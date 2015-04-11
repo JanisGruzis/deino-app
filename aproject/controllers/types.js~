@@ -1,0 +1,102 @@
+controllers.controller('Types', ['$scope', '$http',
+    function ($scope, $http) {
+        $scope.currentPage = 1;
+        $scope.search = {};
+
+        var readItemCount = function(){
+            $http({ method: 'GET', url: Routing.generate('task_count', $scope.search) })
+                .success(function (data) {
+                    $scope.totalItems = data.count;
+                });
+        };
+
+        readItemCount();
+
+        $scope.setPage = function (pageNo) {
+            $scope.currentPage = pageNo;
+        };
+
+        $scope.pageChanged = function () {
+            showItems($scope.currentPage);
+        };
+
+        $scope.maxSize = 10;
+        $scope.itemsPerPage = 50;
+        $scope.lastOrderBy = null;
+
+        var directionToggle = {
+            'asc': 'desc',
+            'desc': 'asc'
+        };
+
+        $scope.orderBy = function (orderBy) {
+            $scope.direction = ($scope.lastOrderBy != orderBy ? 'asc' : directionToggle[$scope.direction]);
+            $scope.lastOrderBy = orderBy;
+
+            showItems($scope.currentPage);
+        };
+
+        $scope.searchTasks = function(){
+            $scope.setPage(1);
+            readItemCount();
+            showItems($scope.currentPage);
+        };
+
+        $scope.clearSearch = function(){
+            $scope.search = {};
+            $scope.setPage(1);
+            readItemCount();
+            showItems($scope.currentPage);
+        };
+
+        var showItems = function (page) {
+            parameters = {
+                page: page,
+                count: $scope.itemsPerPage
+            };
+
+            $.extend(parameters, $scope.search);
+
+            if ($scope.lastOrderBy)
+                parameters['orderBy'] = $scope.lastOrderBy;
+
+            if ($scope.direction)
+                parameters['direction'] = $scope.direction;
+
+            $http({ method: 'GET', url: Routing.generate('task_paginate', parameters) })
+                .success(function (data) {
+                    $scope.tasks = data;
+                });
+        };
+
+        showItems(1);
+    }
+]);
+
+/**
+ * Single task view.
+ */
+controllers.controller('Task_ShowAction', ['$scope', '$routeParams', '$http',
+    function ($scope, $routeParams, $http) {
+
+		var parameters = { code: $routeParams.code };
+
+        $http({ method: 'GET', url: Routing.generate('task_task', parameters) })
+            .success(function (data) {
+                $scope.task = data;
+            });
+
+        $http({ method: 'GET', url: Routing.generate('task_test', parameters) })
+            .success(function (data) {
+                $scope.tests = data;
+            });
+    }
+]);
+
+/**
+ * Task submit form.
+ */
+controllers.controller('Task_SubmitAction', ['$scope', '$routeParams',
+    function ($scope, $routeParams) {
+    }
+]);
