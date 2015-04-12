@@ -1,0 +1,15 @@
+.app-content {
+    width: 100%;
+    max-width: 600px;
+}
+md-card {
+    padding: 3px;
+}
+
+.md-card-image{
+    width: 100%;
+}
+
+.hidden {
+    visibility: hidden;
+}
