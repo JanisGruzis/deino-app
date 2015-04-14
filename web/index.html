@@ -29,25 +29,26 @@
 						<md-progress-circular ng-if="isSearching" md-theme="blue" md-mode="indeterminate"></md-progress-circular>
 					</form>
 		-->
-		<md-card ng-repeat="cluster in news">
+		<md-card ng-repeat="cluster in clusters">
 			<md-card-content>
-				<img src="{{cluster[0].image}}"
-					 alt="" class="md-card-image"/>
-				<div ng-if="isMobile()">
-					<a href="{{cluster[0].url_mobile}}">
+				<img ng-src="{{ articles[cluster.id][0].image }}" alt="" class="md-card-image"/>
+				<div>
+					<a ng-href="{{ articles[cluster.id][0].url_mobile }}">Mobile URL</a>
 				</div>
-				<div ng-if="isMobile()">
-					<a href="{{cluster[0].url}}">
+
+				<div>
+					<a ng-href="{{ articles[cluster.id][0].url }}">URL</a>
 				</div>
-				<h3>{{cluster[0].title}}</h3>
+
+				<h3>{{ articles[cluster.id][0].title }}</h3>
 				</a>
-				<p>{{cluster[0].description}}
+				<p>{{ articles[cluster.id][0].description }}
 				<div ng-if="cluster.length > 1">
 					<md-button ng-click="showSubitems(0)">MORE</md-button>
 				</div>
 				</p>
 				<div id="subItems-{{$index}}">
-					<div ng-if="cluster.length > 1">
+					<div ng-if="articles[cluster.id].length > 1">
 						<!-- <a ng-repeat="subItem in [1, (cluster.length - 1)]"> -->
 						<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
 								<span ng-if="$index!=0">
@@ -73,6 +74,7 @@
 <script src="resources/angular-animate/angular-animate.js"></script>
 <script src="resources/hammerjs/hammer.js"></script>
 <script src="resources/angular-material/angular-material.js"></script>
+<script src="resources/underscore/underscore-min.js"></script>
 
 <!-- angular app -->
 <script src="aproject/app.js"></script>

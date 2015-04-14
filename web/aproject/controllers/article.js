@@ -1,91 +1,39 @@
 controllers.controller('ArticleController', ['$scope', '$http', function ($scope, $http) {
 
-	$scope.news = [
-		[{id: 0,
-			type: 'type',
-			category_id: 0,
-			title: 'title',
-			description: 'description',
-			image: 'http://placehold.it/350x350',
-			cluster_id: 0,
-			rating: 0,
-			url_mobile: 'http://4chan.org/b/',
-			url: 'https://www.google.lv',
-			source: 'source',
-			date: "4/12/2015, 3:34:51 AM"
-//tokens:
-		},
-			{id: 0,
-				type: 'type',
-				category_id: 0,
-				title: 'title',
-				description: 'description',
-				image: 'http://placehold.it/350x350',
-				cluster_id: 0,
-				rating: 0,
-				url_mobile: 'http://4chan.org/b/',
-				url: 'https://www.google.lv',
-				source: 'source',
-				date: "4/12/2015, 3:34:51 AM"
-//tokens:
-			},
-			{id: 0,
-				type: 'type',
-				category_id: 0,
-				title: 'title',
-				description: 'description',
-				image: 'http://placehold.it/350x350',
-				cluster_id: 0,
-				rating: 0,
-				url_mobile: 'http://4chan.org/b/',
-				url: 'https://www.google.lv',
-				source: 'source',
-				date: "4/12/2015, 3:34:51 AM"
-//tokens:
-			}],
-		[{id: 0,
-			type: 'type',
-			category_id: 0,
-			title: 'title',
-			description: 'description',
-			image: 'http://placehold.it/350x350',
-			cluster_id: 0,
-			rating: 0,
-			url_mobile: 'http://4chan.org/b/',
-			url: 'https://www.google.lv',
-			source: 'source',
-			date: "4/12/2015, 3:34:51 AM"
-//tokens:
-		},
-			{id: 0,
-				type: 'type',
-				category_id: 0,
-				title: 'title',
-				description: 'description',
-				image: 'http://placehold.it/350x350',
-				cluster_id: 0,
-				rating: 0,
-				url_mobile: 'http://4chan.org/b/',
-				url: 'https://www.google.lv',
-				source: 'source',
-				date: "4/12/2015, 3:34:51 AM"
-//tokens:
-			},
-			{id: 0,
-				type: 'type',
-				category_id: 0,
-				title: 'title',
-				description: 'description',
-				image: 'http://placehold.it/350x350',
-				cluster_id: 0,
-				rating: 0,
-				url_mobile: 'http://4chan.org/b/',
-				url: 'https://www.google.lv',
-				source: 'source',
-				date: "4/12/2015, 3:34:51 AM"
-//tokens:
-			}]
-	];
+	/**
+	 * Load cluster articles.
+	 */
+	var loadArticles = function(){
+
+		var clusterIds = _.map($scope.clusters, function(cluster){
+			return cluster.id;
+		});
+
+		var query = $.param({ 'clusters': clusterIds });
+		var url = 'http://api.deino.clevercode.lv/api/articles_of_clusters?' + query;
+
+		$http.get(url)
+			.success(function(data){
+				$scope.articles = data;
+			});
+	};
+
+	/**
+	 * Load categories.
+	 */
+	$http.get('http://api.deino.clevercode.lv/api/categories')
+		.success(function(data){
+			$scope.categories = data;
+		});
+
+	/**
+	 * Load clusters.
+	 */
+	$http.get('http://api.deino.clevercode.lv/api/grouped_clusters')
+		.success(function(data){
+			$scope.clusters = _.flatten(_.toArray(data), true);
+			loadArticles();
+		});
 
 	$scope.isMobile = function () {
 		var check = false;
