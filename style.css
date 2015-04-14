@@ -1,9 +1,12 @@
 .app-content {
-    width: 100%;
-    max-width: 600px;
+    justify-content: center;
 }
 md-card {
-    padding: 3px;
+    /* padding: 3px;*/
+}
+
+.card-content {
+    padding: 0px;
 }
 
 .md-card-image{
@@ -12,4 +15,58 @@ md-card {
 
 .hidden {
     visibility: hidden;
+}
+.card {
+    width: 264px;
+    /* flex-grow: 0; */
+    /* flex-shrink: 0; */
+}
+.card-content-text {
+    padding: 0px 12px;
+}
+
+.title {
+    -webkit-margin-before: 0px; 
+   -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+    margin: 0px;
+    /* text-decoration: none; */
+    color: #607D8B;
+}
+
+p {
+    -webkit-margin: 0px;
+    margin: 5px 0px;
+}
+a {
+    text-decoration: none;
+    color: #000000;
+}
+.source {
+    font-size: 0.8em;
+    color: grey;
+    margin-left: 6px;
+    text-transform: uppercase;
+}
+.date{
+    font-size: 0.8em;
+    color: grey;  
+    text-align: right;
+}
+.description {
+  font-size: 0.9em;
+  line-height: 1.4em;
+  text-align: justify;
+  margin-bottom: 14px;
+}
+.alt .title {
+  font-size: 0.9em;
+  /* font-weight: 400; */
+}
+.alt .source {
+  font-size: 0.6em;
+}
+.source_date{
+  margin-top: 0px;
 }
