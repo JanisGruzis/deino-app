@@ -12,7 +12,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
 </head>
 <body ng-app="deino" ng-controller="ArticleController" layout="column" layout-align="top center">
-
     <md-toolbar>
         <div class="md-toolbar-tools">
             <span class="md-flex">Deino</span>
@@ -21,15 +20,8 @@
 
     <md-content>
         <div class="app-content" layout="row" layout-wrap>
-<!--
-			<form ng-submit="search()">
-                <div ng-show="!isSearching">
-                    <md-text-float label="Search for" class="long" ng-model="searchTerm"></md-text-float>
-                </div>
-                <md-progress-circular ng-if="isSearching" md-theme="blue" md-mode="indeterminate"></md-progress-circular>
-            </form>
--->
-            <div class="card" ng-repeat="cluster in news">
+
+<!--		<div class="card" ng-repeat="cluster in news">
 			<md-card>
                 <md-card-content class="card-content">
 					<img src="{{cluster[0].image}}" alt="" class="md-card-image"/>				
@@ -52,10 +44,47 @@
 						<div ng-if="cluster.length > 1">
 							<md-button ng-click="showSubitems($index)">MORE</md-button>
 						</div>
-						</div>
+					</div>
 					<div class="alt" id="subItems-{{$index}}">
 						<div ng-if="cluster.length > 1">
-							<!-- <a ng-repeat="subItem in [1, (cluster.length - 1)]"> -->
+								<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
+								<div ng-if="$index!=0">
+								<p>
+									<div class="title">{{subItem.title}}</div>
+									<div class="source">{{subItem.source}}</div>
+								</p>
+								</div>
+							</a>
+						</div>
+					</div>
+-->
+            <div class="card" ng-repeat="cluster in clusters">
+			<md-card>
+                <md-card-content class="card-content">
+					<img ng-src="{{ articles[cluster.id][0].image }}" alt="" class="md-card-image" data-adaptive-background="1"/>		
+					<div class="card-content-text">
+					<div ng-if="isMobile()">
+						<a href="{{ articles[cluster.id][0].url_mobile }}">
+					</div>
+					<div ng-if="isMobile()">
+						<a href="{{ articles[cluster.id][0].url }}">
+					</div>					
+						<h3 class="title">{{articles[cluster.id][0].title}}</h3>
+					</a>
+					<p class="source_date" layout="row">
+						<span class="source" flex>{{articles[cluster.id][0].source}}</span><span class="date" flex>{{getMoment(articles[cluster.id][0].date)}}</span>
+					</p>
+					<p class="description">
+						{{articles[cluster.id][0].description}}
+					</p>
+					<div ng-if="isMobile()">
+						<div ng-if="articles[cluster.id].length > 1">
+							<md-button ng-click="showSubitems($index)">MORE</md-button>
+						</div>
+					</div>
+					<div class="alt" id="subItems-{{$index}}">
+						<div ng-if="articles[cluster.id].length > 1">
+							<!-- <a ng-repeat="subItem in [1, (articles[cluster.id].length - 1)]"> -->
 							<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
 								<div ng-if="$index!=0">
 								<p>
@@ -66,18 +95,40 @@
 							</a>
 						</div>
 					</div>
+
+<!--
+		<md-card ng-repeat="cluster in clusters">
+			<md-card-content>
+				<img ng-src="{{ articles[cluster.id][0].image }}" alt="" class="md-card-image"/>
+				<div>
+					<a ng-href="{{ articles[cluster.id][0].url_mobile }}">Mobile URL</a>
+				</div>
+
+				<div>
+					<a ng-href="{{ articles[cluster.id][0].url }}">URL</a>
+				</div>
+
+				<h3>{{ articles[cluster.id][0].title }}</h3>
+				</a>
+				<p>{{ articles[cluster.id][0].description }}
+				<div ng-if="cluster.length > 1">
+					<md-button ng-click="showSubitems(0)">MORE</md-button>
+				</div>
+				</p>
+				<div id="subItems-{{$index}}">
+					<div ng-if="articles[cluster.id].length > 1">
+						<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
+								<span ng-if="$index!=0">
+									{{subItem.title}}<br>
+								</span>
+						</a>
+-->						
 					</div>
 				</md-card-content>
-				 <!--
-				 <md-card-footer>
-				   Card footer
-				 </md-card-footer>
-				 -->
             </md-card>
 			</div>
         </div>
     </md-content>
-
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="resources/angular/angular.js"></script>
@@ -86,6 +137,8 @@
 <script src="resources/hammerjs/hammer.js"></script>
 <script src="resources/angular-material/angular-material.js"></script>
 <script src="resources/moment/moment.js"></script>
+<script src="resources/underscore/underscore-min.js"></script>
+<script src="resources/jquery.adaptive-backgrounds/src/jquery.adaptive-backgrounds.js"></script>
 
 <!-- angular app -->
 <script src="aproject/app.js"></script>

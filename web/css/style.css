@@ -32,7 +32,8 @@ md-card {
   -webkit-margin-end: 0px;
     margin: 0px;
     /* text-decoration: none; */
-    color: #607D8B;
+    color: #212121;
+    margin-top: 10px;
 }
 
 p {
@@ -45,7 +46,7 @@ a {
 }
 .source {
     font-size: 0.8em;
-    color: grey;
+    /* color: grey; */
     margin-left: 6px;
     text-transform: uppercase;
 }
