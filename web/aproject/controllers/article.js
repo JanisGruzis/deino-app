@@ -1,4 +1,71 @@
-controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http) {
+controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$mdSidenav', '$log', 
+	function($rootScope, $scope, $http, $mdSidenav, $log) {
+        
+		 $scope.toggleLeft = buildToggler('left');
+		/**
+		 * Build handler to open/close a SideNav; when animation finishes
+		 * report completion in console
+		 */
+		function buildToggler(navID) {
+		  return function() {
+			return $mdSidenav(navID).toggle()
+			  .then(function () {
+				$log.debug("toggle " + navID + " is done");
+			  });
+		  }
+		}		         
+
+        /* search start*/
+        
+        function ArticleController($timeout, $q) {
+            var self = this;
+            // list of `state` value/display objects
+            self.states = loadAll();
+            self.selectedItem = null;
+            self.searchText = null;
+            self.querySearch = querySearch;
+            // ******************************
+            // Internal methods
+            // ******************************
+            /**
+			 * Search for states... use $timeout to simulate
+			 * remote dataservice call.
+			 */
+            function querySearch(query) {
+                var results = query ? self.states.filter(createFilterFor(query)) : [];
+                return results;
+            }
+            /**
+			 * Build `states` list of key/value pairs
+			 */
+            function loadAll() {
+                var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
+              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
+              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
+              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
+              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
+              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
+              Wisconsin, Wyoming';
+                return allStates.split(/, +/g).map(function(state) {
+                    return {
+                        value: state.toLowerCase(),
+                        display: state
+                    };
+                });
+            }
+            /**
+			 * Create filter function for a query string
+			 */
+            function createFilterFor(query) {
+                var lowercaseQuery = angular.lowercase(query);
+                return function filterFn(state) {
+                    return (state.value.indexOf(lowercaseQuery) === 0);
+                };
+            }
+        }
+
+        /* search end */
+        
         $scope.news = [];
         for (var i = 0; i < 10; i++) {
             $scope.news.push([{id: 0,
@@ -80,10 +147,29 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', fu
             
             $http.get(url)
             .success(function(data) {
+                //FIXME:
+                //temporary workaround
                 $.each(data, function(i, val) {
                     $.each(val, function(j, valSub) {
-                        valSub.image = "http://g4.delphi.lv/images/pix/520x315/Bx4b2w06dZE/indrasis-44273807.jpg";
+                        //valSub.image = "http://g4.delphi.lv/images/pix/520x315/Bx4b2w06dZE/indrasis-44273807.jpg";
+                        //valSub.image = "http://g4.delphi.lv/images/pix/355x215/sSwQooWhggI/file42429878_803c8554.jpg";
+                        //valSub.image = "http://g2.delphi.lv/images/pix/355x215/IEPCkzCOzNM/lolita-cigane-43016484.jpg";
+                        valSub.image = "http://g4.delphi.lv/images/pix/230x139/wycRKjcguH0/xchampionsleaguex-45826715.jpg";
                     });
+                    val.push({id: 0,
+                    type: 'type',
+                    category_id: 0,
+                    title: 'Latvijas hokeja izlases sastāvā PČ nespēlēs arī Bārtulis',
+                    description: 'Čitogaras (Chittorgarh) cietoksnis ir lielākais forts Indijā. Tā ir fascinējoša vieta, jo atgādina milzīgu klinšu salu, ko var redzēt pat no lidmašīnas, raksta slavenais ceļvedis Lonely Planet. Sešu kilometru garumā cietoksnis slēpjas starp 150 līdz 18 metrus augstām klintīm.',
+                    image: 'http://placehold.it/350x350',
+                    cluster_id: 0,
+                    rating: 0,
+                    url_mobile: 'http://4chan.org/b/',
+                    url: 'https://www.google.lv',
+                    source: 'delfi.lv',
+                    date: "45 minutes ago" //"4/12/2015, 3:34:51 AM"
+                //tokens: 
+                });
                 })
                 $scope.articles = data;
             });
@@ -105,23 +191,13 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', fu
             $scope.clusters = _.flatten(_.toArray(data), true);
             loadArticles();
         });
-// //$scope.$on('$viewContentLoaded', function(){
-// $scope.$on('$viewContentLoaded', function(event) {
-//  // Run after view loaded.	
-// 	var defaults      = {
-// 	  selector:             '[data-adaptive-background="1"]',
-// 	  parent:               null,
-// 	  exclude:              [ 'rgb(0,0,0)', 'rgba(255,255,255)' ],
-// 	  normalizeTextColor:   true,
-// 	  normalizedTextColors:  {
-// 		light:      "#fff",
-// 		dark:       "#000"
-// 	  },
-// 	  lumaClasses:  {
-// 		light:      "ab-light",
-// 		dark:       "ab-dark"
-// 	  }
-// 	};
-// 	$.adaptiveBackground.run(defaults);        
-// });
     }])
+    .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+          $log.debug("close LEFT is done");
+        });
+    };
+  })
+

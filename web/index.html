@@ -6,60 +6,118 @@
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 	<title>Deino</title>
 	<link rel="stylesheet" href="resources/angular-material/angular-material.css"/>
+	<!-- <link href="resources/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css" />-->
 	<!--  <link rel="stylesheet" href="resources/angular-material/theme/blue-theme.css"/> -->
 	<link rel="stylesheet" href="css/style.css"/>
 	<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
+
 </head>
-<body ng-app="deino" ng-controller="ArticleController" layout="column" layout-align="top center">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <span class="md-flex">Deino</span>
-        </div>
-    </md-toolbar>
-
+<body ng-app="deino" ng-controller="ArticleController as ctrl" layout="row" layout-align="top center">
+	            <div>
+                <h3>Custom templates without ng-repeat and auto-slide</h3>
+                <div class="details">
+                </div>
+                <div class="carousel-demo">
+                    <ul rn-carousel rn-carousel-index="3" rn-carousel-auto-slide="3" class="carousel5">
+                        <li>Slide 1</li>
+                        <li>Slide 2</li>
+                        <li>Slide 3</li>
+                        <li>Slide 4</li>
+                        <li>Slide 5</li>
+                        <li>Slide 6</li>
+                        <li>Slide 7</li>
+                        <li>Slide 8</li>
+                        <li>Slide 9</li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+<!--
+	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Settings</h1>
+      </md-toolbar>
+      <md-content layout-padding ng-controller="LeftCtrl">
+		<section>
+		<md-subheader class="md-primary">Display Categories</md-subheader>
+			<div layout="column">
+			  <md-checkbox ng-repeat="category in categories">
+				{{ category.name }}
+			  </md-checkbox>
+			</div>	
+		</section>	
+      </md-content>
+    </md-sidenav>
+    
+	<div layout="column">
+	<md-toolbar>
+		 <div class="md-toolbar-tools">
+            <h2>Deino</h2>   
+			<span flex></span>
+			<md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+			  <md-icon md-svg-icon="img/ic_menu_48px.svg"></md-icon>
+			</md-button>
+		</div>
+    </md-toolbar>-->
     <md-content>
-        <div class="app-content" layout="row" layout-wrap>
-
-<!--		<div class="card" ng-repeat="cluster in news">
-			<md-card>
-                <md-card-content class="card-content">
-					<img src="{{cluster[0].image}}" alt="" class="md-card-image"/>				
-					<div class="card-content-text">
-					<div ng-if="isMobile()">
-						<a href="{{cluster[0].url_mobile}}">
-					</div>
-					<div ng-if="isMobile()">
-						<a href="{{cluster[0].url}}">
-					</div>					
-						<h3 class="title">{{cluster[0].title}}</h3>
-					</a>
-					<p class="source_date" layout="row">
-						<span class="source" flex>{{cluster[0].source}}</span><span class="date" flex>{{cluster[0].date}}</span>
-					</p>
-					<p class="description">
-						{{cluster[0].description}}
-					</p>
-					<div ng-if="isMobile()">
-						<div ng-if="cluster.length > 1">
-							<md-button ng-click="showSubitems($index)">MORE</md-button>
+		<!-- 
+			The cool search only works if you download the angular-material#master package
+			http://stackoverflow.com/questions/28558737/angular-js-md-autocomplete-does-not-work
+		-->
+		<form ng-submit="$event.preventDefault()">
+			<md-autocomplete
+				md-no-cache="ctrl.noCache"
+				md-selected-item="ctrl.selectedItem"
+				md-search-text="ctrl.searchText"
+				md-items="item in ctrl.querySearch(ctrl.searchText)"
+				md-item-text="item.display"
+				md-floating-label="Favorite state">
+			  <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+			</md-autocomplete>
+		</form>	
+	<div class="app-content" layout="row" layout-wrap>	
+	<div  ng-repeat="articleCluster in articles">
+		<ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex" rn-carousel-buffered>
+			<li ng-repeat="oArticle in articleCluster">
+				<md-card>
+				<div adaptive-background>
+					<md-card-content class="card-content">
+						<img ng-src="{{ oArticle.image }}" alt="" class="md-card-image" data-adaptive-background="1"/>		
+						<div class="card-content-text">
+						<div ng-if="isMobile()">
+							<a href="{{ oArticle.url_mobile }}">
 						</div>
-					</div>
-					<div class="alt" id="subItems-{{$index}}">
-						<div ng-if="cluster.length > 1">
-								<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
-								<div ng-if="$index!=0">
-								<p>
-									<div class="title">{{subItem.title}}</div>
-									<div class="source">{{subItem.source}}</div>
-								</p>
-								</div>
-							</a>
+						<div ng-if="isMobile()">
+							<a href="{{ oArticle.url }}">
+						</div>					
+							<h3 class="title">{{oArticle.title}}</h3>
+						</a>
+						<p class="source_date" layout="row">
+							<span class="source" flex>{{oArticle.source}}</span><span class="date" flex>{{getMoment(oArticle.date)}}</span>
+						</p>
+						<p class="description">
+							{{oArticle.description}}
+						</p>
 						</div>
-					</div>
--->
-            <div class="card" ng-repeat="cluster in clusters">
+					</md-card-content>
+				</div>
+				</md-card>
+			</li>
+		</ul>		
+		</div
+		<!--
+		<ul rn-carousel class="image"  ng-repeat="articleCluster in articles">
+		  <li ng-repeat="oArticle in articleCluster">
+			<div ng-style="{'background-image': 'url({{ oArticle.image }})'}"  class="bgimage">
+				{{ oArticle.id }}
+            </div>
+		  </li>
+		</ul>	
+				
+		<div class="card" ng-repeat="cluster in clusters">
 			<md-card>
+			<div adaptive-background>
                 <md-card-content class="card-content">
 					<img ng-src="{{ articles[cluster.id][0].image }}" alt="" class="md-card-image" data-adaptive-background="1"/>		
 					<div class="card-content-text">
@@ -84,7 +142,6 @@
 					</div>
 					<div class="alt" id="subItems-{{$index}}">
 						<div ng-if="articles[cluster.id].length > 1">
-							<!-- <a ng-repeat="subItem in [1, (articles[cluster.id].length - 1)]"> -->
 							<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
 								<div ng-if="$index!=0">
 								<p>
@@ -95,40 +152,15 @@
 							</a>
 						</div>
 					</div>
-
-<!--
-		<md-card ng-repeat="cluster in clusters">
-			<md-card-content>
-				<img ng-src="{{ articles[cluster.id][0].image }}" alt="" class="md-card-image"/>
-				<div>
-					<a ng-href="{{ articles[cluster.id][0].url_mobile }}">Mobile URL</a>
-				</div>
-
-				<div>
-					<a ng-href="{{ articles[cluster.id][0].url }}">URL</a>
-				</div>
-
-				<h3>{{ articles[cluster.id][0].title }}</h3>
-				</a>
-				<p>{{ articles[cluster.id][0].description }}
-				<div ng-if="cluster.length > 1">
-					<md-button ng-click="showSubitems(0)">MORE</md-button>
-				</div>
-				</p>
-				<div id="subItems-{{$index}}">
-					<div ng-if="articles[cluster.id].length > 1">
-						<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
-								<span ng-if="$index!=0">
-									{{subItem.title}}<br>
-								</span>
-						</a>
--->						
 					</div>
 				</md-card-content>
+			</div>
             </md-card>
 			</div>
+			-->
         </div>
     </md-content>
+	</div>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="resources/angular/angular.js"></script>
@@ -138,7 +170,13 @@
 <script src="resources/angular-material/angular-material.js"></script>
 <script src="resources/moment/moment.js"></script>
 <script src="resources/underscore/underscore-min.js"></script>
-<script src="resources/jquery.adaptive-backgrounds/src/jquery.adaptive-backgrounds.js"></script>
+<script src="https://cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script> 
+<!-- <script src="resources/jquery.adaptive-backgrounds/src/jquery.adaptive-backgrounds.js"></script> -->
+<script src="resources/pleasejs/src/Please.js"></script>
+<script src="resources/tinycolor/tinycolor.js"></script>
+<script src="resources/angular-adaptive-backgrounds.js"></script>
+<script src="resources/angular-touch/angular-touch.js"></script>
+<script src="resources/angular-carousel/dist/angular-carousel.js"></script>
 
 <!-- angular app -->
 <script src="aproject/app.js"></script>
