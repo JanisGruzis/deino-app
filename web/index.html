@@ -1,83 +1,85 @@
 <!doctype html>
 <html>
-<head lang="en">
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-	<title>Deino</title>
-	<link rel="stylesheet" href="resources/angular-material/angular-material.css"/>
-	<!--  <link rel="stylesheet" href="resources/angular-material/theme/blue-theme.css"/> -->
-	<link rel="stylesheet" href="css/style.css"/>
-	<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
-</head>
-<body ng-app="deino" ng-controller="ArticleController" layout="column" layout-align="top center">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <span class="md-flex">Deino</span>
-        </div>
-    </md-toolbar>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+		<title>Deino</title>
 
-    <md-content>
-        <div class="app-content" layout="row" layout-wrap>
-            <div class="card" ng-repeat="cluster in clusters">
-			<md-card>
-                <md-card-content class="card-content">
-					<img ng-src="{{ articles[cluster.id][0].img_url }}" alt="" class="md-card-image" data-adaptive-background="1"/>
-					<div class="card-content-text">
-
-						<h3 class="title">
-							<a ng-href="{{ isMobile() ? articles[cluster.id][0].url_mobile : articles[cluster.id][0].url }}" target="_blank">
-								{{ articles[cluster.id][0].title }}
-							</a>
-						</h3>
-
-						<p class="source_date" layout="row">
-							<span class="source" flex>{{articles[cluster.id][0].source}}</span>
-							<span class="date" flex>{{getMoment(articles[cluster.id][0].date)}}</span>
-						</p>
-
-						<p class="description">
-							{{articles[cluster.id][0].description}}
-						</p>
-						<div ng-if="isMobile()">
-							<div ng-if="articles[cluster.id].length > 1">
-								<md-button ng-click="showSubitems($index)">MORE</md-button>
-							</div>
-						</div>
-						<div class="alt" id="subItems-{{$index}}">
-							<div ng-if="articles[cluster.id].length > 1">
-								<!-- <a ng-repeat="subItem in [1, (articles[cluster.id].length - 1)]"> -->
-								<a href="{{getUrl(subItem)}}" ng-repeat="subItem in cluster">
-									<div ng-if="$index!=0">
-									<p>
-										<div class="title">{{subItem.title}}</div>
-										<div class="source">{{subItem.source}}</div>
-									</p>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</md-card-content>
-            </md-card>
+		<link rel="stylesheet" href="resources/angular-material/angular-material.css"/>
+		<!--  <link rel="stylesheet" href="resources/angular-material/theme/blue-theme.css"/> -->
+		<link rel="stylesheet" href="css/style.css"/>
+		<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
+	</head>
+	<body ng-app="deino" ng-controller="ArticleController" layout="column" layout-align="top center">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<span class="md-flex">Deino</span>
 			</div>
-        </div>
-    </md-content>
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="resources/angular/angular.js"></script>
-<script src="resources/angular-aria/angular-aria.js"></script>
-<script src="resources/angular-animate/angular-animate.js"></script>
-<script src="resources/hammerjs/hammer.js"></script>
-<script src="resources/angular-material/angular-material.js"></script>
-<script src="resources/moment/moment.js"></script>
-<script src="resources/underscore/underscore-min.js"></script>
-<script src="resources/jquery.adaptive-backgrounds/src/jquery.adaptive-backgrounds.js"></script>
+		</md-toolbar>
 
-<!-- angular app -->
-<script src="aproject/app.js"></script>
-<script src="aproject/config.js"></script>
-<script src="aproject/controllers/article.js"></script>
-</body>
+		<md-content>
+			<div class="app-content" layout="row" layout-wrap>
+				<div class="card" ng-repeat="cluster in clusters">
+					<md-card layout-padding>
+						<md-card-content class="card-content">
+
+							<img ng-src="{{ articles[cluster.id][0].img_url }}"
+								 alt=""
+								 class="md-card-image"
+								 data-adaptive-background="1"
+								 ng-if="articles[cluster.id][0].img_url"/>
+
+							<h3 class="title">
+								<a ng-href="{{ isMobile() ? articles[cluster.id][0].url_mobile : articles[cluster.id][0].url }}" target="_blank">
+									{{ articles[cluster.id][0].title }}
+								</a>
+							</h3>
+
+							<p class="source_date" layout="row">
+								<span class="source" flex>{{ articles[cluster.id][0].source }}</span>
+								<span class="date" flex>{{ getMoment(articles[cluster.id][0].date) }}</span>
+							</p>
+
+							<p class="description">
+								{{articles[cluster.id][0].description}}
+							</p>
+							<div ng-if="isMobile()">
+								<div ng-if="articles[cluster.id].length > 1">
+									<md-button ng-click="showSubitems($index)">MORE</md-button>
+								</div>
+							</div>
+
+							<div layout="column" ng-if="articles[cluster.id].length > 1">
+								<md-button ng-click="cluster.showSources = (cluster.showSources ? false : true); $event.preventDefault();"
+										   target="_blank">Show source</md-button>
+
+								<md-button ng-href="{{ isMobile() ? article.url_mobile : article.url }}"
+										   ng-show="cluster.showSources"
+										   target="_blank"
+										   ng-repeat="article in articles[cluster.id]">{{ article.source }}</md-button>
+							</div>
+						</md-card-content>
+					</md-card>
+				</div>
+			</div>
+		</md-content>
+
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="resources/angular/angular.js"></script>
+		<script src="resources/angular-aria/angular-aria.js"></script>
+		<script src="resources/angular-animate/angular-animate.js"></script>
+		<script src="resources/hammerjs/hammer.js"></script>
+		<script src="resources/angular-material/angular-material.js"></script>
+		<script src="resources/moment/moment.js"></script>
+		<script src="resources/underscore/underscore-min.js"></script>
+		<script src="resources/jquery.adaptive-backgrounds/src/jquery.adaptive-backgrounds.js"></script>
+
+		<!-- angular app -->
+		<script src="aproject/app.js"></script>
+		<script src="aproject/config.js"></script>
+		<script src="aproject/controllers/article.js"></script>
+	</body>
 </html>

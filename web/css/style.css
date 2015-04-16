@@ -21,9 +21,6 @@ md-card {
     /* flex-grow: 0; */
     /* flex-shrink: 0; */
 }
-.card-content-text {
-    padding: 0px 12px;
-}
 
 .title {
     -webkit-margin-before: 0px; 
@@ -70,4 +67,8 @@ a {
 }
 .source_date{
   margin-top: 0px;
+}
+
+.sources md-list-item a {
+	font-size: 12px;
 }

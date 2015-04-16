@@ -9,10 +9,6 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', fu
 		return check;
 	};
 
-	$scope.getUrl = function (subItem) {
-		return ($scope.isMobile() ? subItem.url_mobile : subItem.url);
-	};
-
 	$scope.getMoment = function (date) {
 		return moment(date).fromNow();
 	};
