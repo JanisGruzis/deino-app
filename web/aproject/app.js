@@ -1,5 +1,5 @@
 var app = angular.module('deino', [
-	'ngMdIcons',
+// 	'ngMdIcons',
 	'ngAnimate',
 	'ngAria',
 	'ngMaterial',

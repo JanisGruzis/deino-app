@@ -9,10 +9,12 @@
     "angular": null,
     "angular-animate": "1.3.15",
     "angular-aria": "1.3.15",
-	"angular-material": null
+	"angular-carousel": "0.3.10",
+	"angular-material": "master",
+	"angular-touch": "1.3.15",
 	"hammerjs": "2.0.4",
-	"underscore": "~1.8",
-	"moment": null,
-	"angular-carousel": null
+	"moment": "2.10.2",
+	"tinycolor": "1.1.2",
+	"underscore": "~1.8"
   }
 }

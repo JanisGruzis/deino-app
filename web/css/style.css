@@ -1,5 +1,6 @@
 .app-content {
     justify-content: center;
+    /* width: 100%; */
 }
 md-card {
     /* padding: 3px;*/
@@ -7,10 +8,11 @@ md-card {
 
 .card-content {
     padding: 0px;
+    /* height: 100%; */
 }
 
 .md-card-image{
-    width: 100%;
+/*     width: 100%; */
 }
 .hidden {
     visibility: hidden;
@@ -83,48 +85,30 @@ md-checkbox .md-container {
 }
 md-card {
   margin: 0px;
+
   height: 100%;
+  /* display: inline-block; */
 }
 
  ul[rn-carousel] {
-  width: 400px;
-  height: 800px;
+  /* width: 100%; */
+  height: 640px;
   margin: 0 auto;
+  /* display: inline-block; */
 }
-ul[rn-carousel] > li {
-  color: black;
-  -webkit-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  overflow: visible;
-  vertical-align: top;
-  position: absolute;
-  left: 0;
-  right: 0;
-  white-space: normal;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
+[layout=column]{
   width: 100%;
-  height: 100%;
-  display: inline-block;
 }
-/*
-.bgimage {
-  text-align: right;
-  color: white;
-  background-size: cover;
-  height: 100%;
-  background-position: center center;
-} */
-.carousel-demo {
-    margin-top:20px;
-    display:inline-block;
-    text-align: center;
+.ul-container {
+  width: 16.66%;
 }
-.carousel5 li {
-    width:100%;
-    height:100%;
-    font-size:30px;
-    background-color: #ccc;
+[adaptive-background] {
+  height: 100%;
+}
+/* #### Mobile Phones Portrait #### */
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+  .ul-container {
+    width: 100%;
+  }  
 }
