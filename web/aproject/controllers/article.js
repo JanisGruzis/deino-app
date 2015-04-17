@@ -178,10 +178,10 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$
         /**
 	 * Load categories.
 	 */
-        $http.get('http://api.deino.clevercode.lv/api/categories')
-        .success(function(data) {
-            $scope.categories = data;
-        });
+	$http.get('http://api.deino.clevercode.lv/api/categories')
+		.success(function (data) {
+			$scope.categories = data;
+		});
 
         /**
 	 * Load clusters.
