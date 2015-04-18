@@ -1,86 +1,56 @@
 <!doctype html>
 <html>
 <head lang="en">
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-	<title>Deino</title>
-	<link rel="stylesheet" href="resources/angular-material/angular-material.css"/>
-	<link href="resources/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css" />
-	<!--  <link rel="stylesheet" href="resources/angular-material/theme/blue-theme.css"/> -->
-	<link rel="stylesheet" href="css/style.css"/>
-	<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>Deino</title>
+    <link rel="stylesheet" href="resources/angular-material/angular-material.css"/>
+    <link href="resources/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css"/>
+    <!--  <link rel="stylesheet" href="resources/angular-material/theme/blue-theme.css"/> -->
+    <link rel="stylesheet" href="css/style.css"/>
+    <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
 
 </head>
 <body ng-app="deino" ng-controller="ArticleController as ctrl" layout="row" layout-align="top center">
-	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-      <md-toolbar class="md-theme-indigo">
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Settings</h1>
-      </md-toolbar>
-      <md-content layout-padding ng-controller="LeftCtrl">
-		<section>
-		<md-subheader class="md-primary">Display Categories</md-subheader>
-			<div layout="column">
-			  <md-checkbox ng-repeat="category in categories">
-				{{ category.name }}
-			  </md-checkbox>
-			</div>	
-		</section>	
-      </md-content>
-    </md-sidenav>
-    
-	<div layout="column">
-	<md-toolbar>
-		 <div class="md-toolbar-tools">
-            <h2>Deino</h2>   
-			<span flex></span>
-			<md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
-			  <md-icon md-svg-icon="img/ic_menu_48px.svg"></md-icon>
-			</md-button>
-		</div>
+    </md-toolbar>
+    <md-content layout-padding ng-controller="LeftCtrl">
+        <section>
+            <md-subheader class="md-primary">Display Categories</md-subheader>
+            <div layout="column">
+                <md-checkbox ng-repeat="category in categories">
+                    {{ category.name }}
+                </md-checkbox>
+            </div>
+        </section>
+    </md-content>
+</md-sidenav>
+
+<div layout="column">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Deino</h2>
+            <span flex></span>
+            <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+                <md-icon md-svg-icon="img/ic_menu_48px.svg"></md-icon>
+            </md-button>
+        </div>
     </md-toolbar>
     <md-content>
-		<!-- 
-			The cool search only works if you download the angular-material#master package
-			http://stackoverflow.com/questions/28558737/angular-js-md-autocomplete-does-not-work
-		-->
+        <!--
+            The cool search only works if you download the angular-material#master package
+            http://stackoverflow.com/questions/28558737/angular-js-md-autocomplete-does-not-work
+        -->
 
-	<div class="app-content" layout="row" layout-wrap>	
-	<div  class="ul-container" ng-repeat="articleCluster in articles">
-		<ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex" rn-carousel-buffered>
-			<li ng-repeat="oArticle in articleCluster">
-				<md-card>
-				<div adaptive-background>
-					<md-card-content class="card-content">
-						<img ng-src="{{ oArticle.image }}"
-							 alt="" 
-							 class="md-card-image" 
-							 data-adaptive-background="1"
-							 ng-if="oArticle.image"/>		
-						<div class="card-content-text">
-							<h3 class="title">
-								<a ng-href="{{ isMobile() ? {{ oArticle.url_mobile }} : {{ oArticle.url }}" target="_blank">
-									{{oArticle.title}}
-								</a>
-							</h3>							
-						<p class="source_date" layout="row">
-							<span class="source" flex>{{oArticle.source}}</span>
-							<span class="date" flex>{{getMoment(oArticle.date)}}</span>
-						</p>
-						<p class="description">
-							{{oArticle.description}}
-						</p>
-						</div>
-					</md-card-content>
-				</div>
-				</md-card>
-			</li>
-		</ul>		
-		</div>
+        <div class="app-content">
+            <div ng-view class="ul-container" layout-sm="column" layot="row" layout-wrap></div>
         </div>
     </md-content>
-	</div>
+</div>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="resources/angular/angular.js"></script>
@@ -90,6 +60,7 @@
 <script src="resources/angular-material/angular-material.js"></script>
 <script src="resources/moment/moment.js"></script>
 <script src="resources/underscore/underscore-min.js"></script>
+<script src="resources/angular-route/angular-route.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>  -->
 <!-- <script src="resources/jquery.adaptive-backgrounds/src/jquery.adaptive-backgrounds.js"></script> -->
 <!-- <script src="resources/pleasejs/src/Please.js"></script> -->
@@ -102,5 +73,6 @@
 <script src="aproject/app.js"></script>
 <script src="aproject/config.js"></script>
 <script src="aproject/controllers/article.js"></script>
+<script src="aproject/route.js"></script>
 </body>
 </html>

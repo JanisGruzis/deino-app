@@ -86,13 +86,12 @@ md-checkbox .md-container {
 }
 md-card {
   margin: 0px;
-
   height: 100%;
   /* display: inline-block; */
 }
 
  ul[rn-carousel] {
-  /* width: 100%; */
+  /* width: 16.6%; */
   height: 640px;
   margin: 0 auto;
   /* display: inline-block; */
@@ -101,7 +100,7 @@ md-card {
   width: 100%;
 }
 .ul-container {
-  width: 16.66%;
+/*   width: 100%; */
 }
 [adaptive-background] {
   height: 100%;
@@ -110,6 +109,15 @@ md-card {
 @media screen and (max-device-width: 480px) and (orientation: portrait){
   /* some CSS here */
   .ul-container {
-    width: 100%;
+/*     width: 100%; */
   }  
+}
+@media screen and (min-device-width: 480px){
+  section{
+    width: 100%;
+  }
+  .section-container {
+    display: inline-flex;
+    width: 16.6%;
+  }
 }

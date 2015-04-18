@@ -1,4 +1,5 @@
 var app = angular.module('deino', [
+	'ngRoute',
 // 	'ngMdIcons',
 	'ngAnimate',
 	'ngAria',
