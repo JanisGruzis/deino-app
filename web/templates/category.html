@@ -1,7 +1,7 @@
-<div class="section-container" ng-repeat="(articles_key, articles) in catClustArticles" flex>
-    <section>
-        <md-subheader class="md-primary">{{ categories[articles_key].name }}</md-subheader>
-        <div ng-repeat="articleCluster in articles">
+<section>
+    <div class="section-container">
+        <md-subheader class="md-primary">{{ categories[category].name }}</md-subheader>
+        <div ng-repeat="articleCluster in clustArticles">
             <ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex" rn-carousel-buffered>
                 <li ng-repeat="oArticle in articleCluster.articles">
                     <md-card>
@@ -37,5 +37,5 @@
                 </li>
             </ul>
         </div>
-    </section>
-</div>
+    </div>
+</section>

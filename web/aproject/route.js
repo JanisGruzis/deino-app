@@ -1,7 +1,7 @@
 app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('category/:category', {
+            when('/category/:category', {
                 templateUrl: 'templates/category.html',
                 controller: 'CategoryController'
             }).

@@ -68,52 +68,6 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$
 
         /* search end */
 
-//         $scope.news = [];
-//         for (var i = 0; i < 10; i++) {
-//             $scope.news.push([{id: 0,
-//                     type: 'type',
-//                     category_id: 0,
-//                     title: 'Latvijas hokeja izlases sastāvā PČ nespēlēs arī Bārtulis',
-//                     description: 'Čitogaras (Chittorgarh) cietoksnis ir lielākais forts Indijā. Tā ir fascinējoša vieta, jo atgādina milzīgu klinšu salu, ko var redzēt pat no lidmašīnas, raksta slavenais ceļvedis Lonely Planet. Sešu kilometru garumā cietoksnis slēpjas starp 150 līdz 18 metrus augstām klintīm.',
-//                     image: 'http://placehold.it/350x350',
-//                     cluster_id: 0,
-//                     rating: 0,
-//                     url_mobile: 'http://4chan.org/b/',
-//                     url: 'https://www.google.lv',
-//                     source: 'delfi.lv',
-//                     date: "45 minutes ago" //"4/12/2015, 3:34:51 AM"
-//                 //tokens: 
-//                 }, 
-//                 {id: 0,
-//                     type: 'type',
-//                     category_id: 0,
-//                     title: 'Latvijas hokeja izlases sastāvā PČ nespēlēs arī Bārtulis',
-//                     description: 'Čitogaras (Chittorgarh) cietoksnis ir lielākais forts Indijā. Tā ir fascinējoša vieta, jo atgādina milzīgu klinšu salu, ko var redzēt pat no lidmašīnas, raksta slavenais ceļvedis Lonely Planet. Sešu kilometru garumā cietoksnis slēpjas starp 150 līdz 18 metrus augstām klintīm.',
-//                     image: 'http://placehold.it/350x350',
-//                     cluster_id: 0,
-//                     rating: 0,
-//                     url_mobile: 'http://4chan.org/b/',
-//                     url: 'https://www.google.lv',
-//                     source: 'delfi.lv',
-//                     date: moment("4/12/2015, 3:34:51 AM").fromNow()
-//                 //tokens: 
-//                 }, 
-//                 {id: 0,
-//                     type: 'type',
-//                     category_id: 0,
-//                     title: 'Latvijas hokeja izlases sastāvā PČ nespēlēs arī Bārtulis',
-//                     description: 'Čitogaras (Chittorgarh) cietoksnis ir lielākais forts Indijā. Tā ir fascinējoša vieta, jo atgādina milzīgu klinšu salu, ko var redzēt pat no lidmašīnas, raksta slavenais ceļvedis Lonely Planet. Sešu kilometru garumā cietoksnis slēpjas starp 150 līdz 18 metrus augstām klintīm.',
-//                     image: 'http://placehold.it/350x350',
-//                     cluster_id: 0,
-//                     rating: 0,
-//                     url_mobile: 'http://4chan.org/b/',
-//                     url: 'https://www.google.lv',
-//                     source: 'delfi.lv',
-//                     date: "45 minutes ago"
-//                 //tokens: 
-//                 }]);
-//         }
-
         $scope.isMobile = function () {
             var check = false;
             (function (a) {
@@ -131,10 +85,6 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$
             return moment(date).fromNow();
         };
 
-        $scope.showSubitems = function (index) {
-            angular.element($('#subItems-' + index)).toggle();
-        };
-
         /**
          * Load categorized cluster articles.
          */
@@ -143,49 +93,6 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$
             .success(function (data) {
                 $scope.catClustArticles = data;
             });
-
-        /**
-         * Load cluster articles.
-         */
-        //var loadArticles = function() {
-        //
-        //    var clusterIds = _.map($scope.clusters, function(cluster) {
-        //        return cluster.id;
-        //    });
-        //
-        //    var query = $.param({'clusters': clusterIds});
-        //    var url = 'http://api.deino.clevercode.lv/api/articles_of_clusters?' + query;
-        //
-        //    $http.get(url)
-        //    .success(function(data) {
-        //        //FIXME:
-        //        //temporary workaround
-        //        $.each(data, function(i, val) {
-        //            $.each(val, function(j, valSub) {
-        //                //valSub.image = "http://g4.delphi.lv/images/pix/520x315/Bx4b2w06dZE/indrasis-44273807.jpg";
-        //                //valSub.image = "http://g4.delphi.lv/images/pix/355x215/sSwQooWhggI/file42429878_803c8554.jpg";
-        //                //valSub.image = "http://g2.delphi.lv/images/pix/355x215/IEPCkzCOzNM/lolita-cigane-43016484.jpg";
-        //                valSub.image = "http://g4.delphi.lv/images/pix/230x139/wycRKjcguH0/xchampionsleaguex-45826715.jpg";
-        //            });
-        //            val.push({id: 0,
-        //            type: 'type',
-        //            category_id: 0,
-        //            title: 'Latvijas hokeja izlases sastāvā PČ nespēlēs arī Bārtulis',
-        //            description: 'Čitogaras (Chittorgarh) cietoksnis ir lielākais forts Indijā. Tā ir fascinējoša vieta, jo atgādina milzīgu klinšu salu, ko var redzēt pat no lidmašīnas, raksta slavenais ceļvedis Lonely Planet. Sešu kilometru garumā cietoksnis slēpjas starp 150 līdz 18 metrus augstām klintīm.',
-        //            image: 'http://placehold.it/350x350',
-        //            cluster_id: 0,
-        //            rating: 0,
-        //            url_mobile: 'http://4chan.org/b/',
-        //            url: 'https://www.google.lv',
-        //            source: 'delfi.lv',
-        //            date: "45 minutes ago" //"4/12/2015, 3:34:51 AM"
-        //        //tokens:
-        //        });
-        //        });
-        //        $scope.articles = data;
-        //    });
-        //};
-
         /**
          * Load categories.
          */
@@ -194,14 +101,6 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$
                 $scope.categories = data;
             });
 
-        /**
-         * Load clusters.
-         */
-        //$http.get('http://api.deino.clevercode.lv/api/grouped_clusters')
-        //.success(function(data) {
-        //    $scope.clusters = _.flatten(_.toArray(data), true);
-        //    loadArticles();
-        //});
     }])
     .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
         $scope.close = function () {
