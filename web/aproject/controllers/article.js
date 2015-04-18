@@ -14,6 +14,11 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$
                     });
             }
         }
+        $scope.$watch('source', function (newValue, oldValue) {
+            console.log('oldValue=' + oldValue);
+            console.log('newValue=' + newValue);
+            //do something
+        });
 
         /* search start*/
 
@@ -100,6 +105,13 @@ controllers.controller('ArticleController', ['$rootScope', '$scope', '$http', '$
             .success(function (data) {
                 $scope.categories = data;
             });
+
+        $scope.sources = [
+            {name:"Delfi"},
+            {name:"TVNET"},
+            {name:"Apollo"},
+        ];
+
 
     }])
     .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
