@@ -38,7 +38,9 @@
         var adaptBackground, childElement, findImage, handleImg, rawChildElement, rawElement, setColors, useCSSBackground;
         rawElement = element[0];
         useCSSBackground = function(el) {
-          return el.tagName !== 'IMG';
+          if (typeof el !== 'undefined') {
+            return el.tagName !== 'IMG'; 
+          }
         };
         findImage = function() {
           var elementWithClass, imageClass;
@@ -85,8 +87,10 @@
           return adaptBackground(getCSSBackground(rawChildElement));
         } else {
           handleImg = function() {
-            if (rawChildElement.src) {
-              return adaptBackground(rawChildElement);
+            if (typeof rawChildElement !== 'undefined') {
+              if (rawChildElement.src) {
+                return adaptBackground(rawChildElement);
+              }
             }
           };
           childElement.on('load', handleImg);
