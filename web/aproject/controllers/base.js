@@ -2,6 +2,13 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 	function ($rootScope, $scope, $http, $location) {
 
 		/**
+		 * Goto start.
+		 */
+		$rootScope.gotoStart = function(){
+			$location.path('/');
+		};
+
+		/**
 		 * Format date.
 		 * @param date
 		 * @returns {*}
@@ -29,6 +36,13 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 		$http.get('http://api.deino.clevercode.lv/api/categories')
 			.success(function (data) {
 				$rootScope.categories = data;
+
+				$scope.$watch('categories', function(oldValue, newValue){
+					if (oldValue != newValue)
+					{
+						loadCategoryList();
+					}
+				}, true);
 			});
 
 		/**
@@ -41,7 +55,7 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 				$scope.$watch('sources', function(oldValue, newValue){
 					if (oldValue != newValue)
 					{
-						loadCategoryList();
+						loadSearchList();
 					}
 				}, true);
 			});
@@ -59,17 +73,21 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 			$location.path('/category');
 		};
 
+		var loadSearchList = function(){
+			$location.path('/query');
+		};
+
 		$scope.$watch('searchQuery', function(oldValue, newValue){
 			if (oldValue != newValue && $.trim(newValue))
 			{
-				loadCategoryList();
+				loadSearchList();
 			}
 		});
 
 		$scope.$watch('searchPeriod', function(oldValue, newValue){
 			if (oldValue != newValue && newValue != 'all')
 			{
-				loadCategoryList();
+				loadSearchList();
 			}
 		});
 	}]);
