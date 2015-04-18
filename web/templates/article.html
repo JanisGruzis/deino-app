@@ -1,6 +1,6 @@
 <div ng-repeat="(articles_key, articles) in catClustArticles" flex>
-        <h2>{{ categories[articles_key].name }}</h2>
-        <div class="row">
+	<h2>{{ categories[articles_key].name }}</h2>
+    <div class="row">
         <div class="col-md-4" ng-repeat="articleCluster in articles">
 		<div class="carousel slide" data-ride="carousel">
 			  <!-- Indicators -->
@@ -28,5 +28,5 @@
                 </div>
         </div>
         </div>
-        </div>
+	</div>
 </div>
