@@ -1,12 +1,12 @@
 <div class="section-container" ng-repeat="(articles_key, articles) in catClustArticles" flex>
-    <section>
+    <section layout-gt-md="column">
         <md-subheader class="md-primary">{{ categories[articles_key].name }}</md-subheader>
-        <div ng-repeat="articleCluster in articles">
+        <div layout-gt-md="row" ng-repeat="articleCluster in articles">
             <ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex" rn-carousel-buffered>
                 <li ng-repeat="oArticle in articleCluster.articles">
                     <md-card>
                         <div adaptive-background>
-                            <md-card-content class="card-content">
+                            <md-card-content layout-gt-md="row" class="card-content">
                                 <!--<img ng-src="{{ oArticle.img_url }}"-->
                                 <!--alt=""-->
                                 <!--class="md-card-image"-->

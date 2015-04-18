@@ -113,11 +113,11 @@ md-card {
   }  
 }
 @media screen and (min-device-width: 480px){
-  section{
+/*   section{
     width: 100%;
   }
   .section-container {
     display: inline-flex;
     width: 16.6%;
-  }
+  } */
 }
