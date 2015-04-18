@@ -22,6 +22,15 @@
     </md-toolbar>
     <md-content layout-padding ng-controller="LeftCtrl">
         <section>
+            <md-subheader class="md-primary">Display Sources</md-subheader>
+            <div layout="column">
+                <md-checkbox ng-model="source.isChecked" ng-repeat="source in sources">
+                    {{ source.name }}
+                </md-checkbox>
+            </div>
+        </section>
+
+        <section>
             <md-subheader class="md-primary">Display Categories</md-subheader>
             <div layout="column">
                 <md-checkbox ng-repeat="category in categories">
