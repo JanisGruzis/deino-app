@@ -29,6 +29,8 @@
 							<input ng-model="searchQuery" type="text"/>
 						</md-input-container>
 
+						<div layout-padding>Periods</div>
+
 						<md-radio-group ng-model="searchPeriod" class="md-primary">
 							<md-radio-button value="all">viss</md-radio-button>
 							<md-radio-button value="day">diena</md-radio-button>
@@ -36,12 +38,16 @@
 							<md-radio-button value="month">mēnesis</md-radio-button>
 						</md-radio-group>
 
-						<md-checkbox ng-checked="source.checked"
-									 ng-click="source.checked = !source.checked"
-									 ng-repeat="source in sources"
-									 class="md-primary">
-							{{ source.name }}
-						</md-checkbox>
+						<div layout-padding>Avots</div>
+
+						<md-radio-group ng-model="searchPeriod" class="md-primary">
+							<md-radio-button ng-checked="source.checked"
+										 ng-click="source.checked = !source.checked"
+										 ng-repeat="source in sources"
+										 class="md-primary">
+								{{ source.name }}
+							</md-radio-button>
+						</md-radio-group>
 					</div>
 				</section>
 
@@ -50,6 +56,8 @@
 
 					<div layout="column" layout-padding>
 						<md-checkbox ng-repeat="category in categories"
+									 ng-checked="category.checked"
+									 ng-click="category.checked = !category.checked"
 									 class="md-primary">
 							{{ category.name }}
 						</md-checkbox>

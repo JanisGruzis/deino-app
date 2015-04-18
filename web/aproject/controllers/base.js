@@ -1,18 +1,12 @@
-controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$mdSidenav', '$log',
-	function ($rootScope, $scope, $http, $mdSidenav, $log) {
-
-		$rootScope.$watch('sources', function (newValue, oldValue) {
-			console.log('oldValue=' + oldValue);
-			console.log('newValue=' + newValue);
-			//do something
-		});
+controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$location',
+	function ($rootScope, $scope, $http, $location) {
 
 		/**
 		 * Format date.
 		 * @param date
 		 * @returns {*}
 		 */
-			$rootScope.formatDate = function (date) {
+		$rootScope.formatDate = function (date) {
 			return moment(date).fromNow();
 		};
 
@@ -43,12 +37,40 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$mdS
 		$http.get('http://api.deino.clevercode.lv/api/sources')
 			.success(function (data) {
 				$rootScope.sources = data;
+
+				$scope.$watch('sources', function(oldValue, newValue){
+					if (oldValue != newValue)
+					{
+						loadCategoryList();
+					}
+				}, true);
 			});
 
 		/**
 		 * Default search period shows all articles.
 		 * @type {string}
 		 */
-		$scope.searchPeriod = 'all';
+		$rootScope.searchPeriod = 'all';
+
+		/**
+		 * Load category list.
+		 */
+		var loadCategoryList = function(){
+			$location.path('/category');
+		};
+
+		$scope.$watch('searchQuery', function(oldValue, newValue){
+			if (oldValue != newValue && $.trim(newValue))
+			{
+				loadCategoryList();
+			}
+		});
+
+		$scope.$watch('searchPeriod', function(oldValue, newValue){
+			if (oldValue != newValue && newValue != 'all')
+			{
+				loadCategoryList();
+			}
+		});
 	}]);
 
