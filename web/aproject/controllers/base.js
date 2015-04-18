@@ -1,7 +1,7 @@
 controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$mdSidenav', '$log',
 	function ($rootScope, $scope, $http, $mdSidenav, $log) {
 
-		$scope.$watch('source', function (newValue, oldValue) {
+		$rootScope.$watch('sources', function (newValue, oldValue) {
 			console.log('oldValue=' + oldValue);
 			console.log('newValue=' + newValue);
 			//do something
@@ -12,7 +12,7 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$mdS
 		 * @param date
 		 * @returns {*}
 		 */
-		$rootScope.formatDate = function (date) {
+			$rootScope.formatDate = function (date) {
 			return moment(date).fromNow();
 		};
 
@@ -34,7 +34,7 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$mdS
 		 */
 		$http.get('http://api.deino.clevercode.lv/api/categories')
 			.success(function (data) {
-				$scope.categories = data;
+				$rootScope.categories = data;
 			});
 
 		/**
@@ -42,7 +42,13 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$mdS
 		 */
 		$http.get('http://api.deino.clevercode.lv/api/sources')
 			.success(function (data) {
-				$scope.sources = data;
+				$rootScope.sources = data;
 			});
+
+		/**
+		 * Default search period shows all articles.
+		 * @type {string}
+		 */
+		$scope.searchPeriod = 'all';
 	}]);
 

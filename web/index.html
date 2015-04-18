@@ -18,26 +18,44 @@
 	<body ng-app="deino" ng-controller="BaseController" layout="row" layout-align="top center">
 		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="!isMobile()">
 			<md-toolbar class="md-theme-indigo">
-				<h1 class="md-toolbar-tools">Settings</h1>
 			</md-toolbar>
 			<md-content layout-padding>
+
 				<section>
-					<md-subheader class="md-primary">Display Sources</md-subheader>
-					<div layout="column">
-						<md-checkbox ng-model="source.isChecked" ng-repeat="source in sources">
+					<md-subheader class="md-primary">Meklēt</md-subheader>
+					<div layout="column" layout-padding>
+						<md-input-container>
+							<label>Meklēt rakstus</label>
+							<input ng-model="searchQuery" type="text"/>
+						</md-input-container>
+
+						<md-radio-group ng-model="searchPeriod" class="md-primary">
+							<md-radio-button value="all">viss</md-radio-button>
+							<md-radio-button value="day">diena</md-radio-button>
+							<md-radio-button value="week">nedēļa</md-radio-button>
+							<md-radio-button value="month">mēnesis</md-radio-button>
+						</md-radio-group>
+
+						<md-checkbox ng-checked="source.checked"
+									 ng-click="source.checked = !source.checked"
+									 ng-repeat="source in sources"
+									 class="md-primary">
 							{{ source.name }}
 						</md-checkbox>
 					</div>
 				</section>
 
 				<section>
-					<md-subheader class="md-primary">Display Categories</md-subheader>
-					<div layout="column">
-						<md-checkbox ng-repeat="category in categories">
+					<md-subheader class="md-primary">Kategorijas</md-subheader>
+
+					<div layout="column" layout-padding>
+						<md-checkbox ng-repeat="category in categories"
+									 class="md-primary">
 							{{ category.name }}
 						</md-checkbox>
 					</div>
 				</section>
+
 			</md-content>
 		</md-sidenav>
 
@@ -52,11 +70,6 @@
 				</div>
 			</md-toolbar>
 			<md-content>
-				<!--
-					The cool search only works if you download the angular-material#master package
-					http://stackoverflow.com/questions/28558737/angular-js-md-autocomplete-does-not-work
-				-->
-
 				<div class="app-content">
 					<div ng-view class="ul-container" layout-sm="column" layot="row" layout-gt-md="column" layout-wrap></div>
 				</div>
