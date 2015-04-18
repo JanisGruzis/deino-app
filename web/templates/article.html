@@ -1,21 +1,14 @@
-<div class="section-container" ng-repeat="(articles_key, articles) in catClustArticles" flex>
-    <section>
-        <md-subheader class="md-primary">{{ categories[articles_key].name }}</md-subheader>
-        <div ng-repeat="articleCluster in articles">
-            <ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex" rn-carousel-buffered>
-                <li ng-repeat="oArticle in articleCluster.articles">
-                    <md-card>
-                        <div adaptive-background>
-                            <md-card-content class="card-content">
-                                <!--<img ng-src="{{ oArticle.img_url }}"-->
-                                <!--alt=""-->
-                                <!--class="md-card-image"-->
-                                <!--data-adaptive-background="1"-->
-                                <!--ng-if="oArticle.img_url"/>-->
-                                <img ng-src="{{ oArticle.img_url }}" alt="" class="md-card-image"
-                                     data-adaptive-background="1"/>
-
+<div ng-repeat="(articles_key, articles) in catClustArticles" flex>
+        <h2>{{ categories[articles_key].name }}</h2>
+        <div class="row">
+        <div class="col-md-4" ng-repeat="articleCluster in articles">
+		<div class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+                <div ng-repeat="oArticle in articleCluster.articles">
+                    
                                 <div class="card-content-text">
+                                <img ng-src="{{ oArticle.img_url }}" style="width:100%" alt=""/>
+
                                     <h3 class="title">
                                         <a ng-href="{{ oArticle.url }}" target="_blank">
                                             {{oArticle.title}}
@@ -31,11 +24,8 @@
                                         {{oArticle.description}}
                                     </p>
                                 </div>
-                            </md-card-content>
-                        </div>
-                    </md-card>
-                </li>
-            </ul>
+                </div>
         </div>
-    </section>
+        </div>
+        </div>
 </div>
