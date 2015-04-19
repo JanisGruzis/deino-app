@@ -157,3 +157,19 @@ ul[rn-carousel] > li:first-child {
     margin-top:30%;
     left: 0.4em;
 }
+
+::-webkit-scrollbar
+{
+    width: 0.5em;  /* for vertical scrollbars */
+    height: 0.5em; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: rgba(0, 0, 0, 0.3);
+}
