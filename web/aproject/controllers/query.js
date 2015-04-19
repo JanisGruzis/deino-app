@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-controllers.controller('QueryController', ['$rootScope', '$scope', '$http', '$routeParams',
-    function ($rootScope, $scope, $http, $routeParams) {
-        $scope.category = $routeParams.category;
-            var url = 'http://api.deino.clevercode.lv/api/articles?limit=10&offset=&query=Adidas&from=';
-        $http.get(url)
-            .success(function (data) {
-                $scope.queryArticles = data;
-            });
-    }])
-=======
 controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
     function ($rootScope, $scope, $http) {
 
@@ -62,4 +51,3 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 			}
 		}, true);
     }]);
->>>>>>> 18ce96f81230a5f22b7a11d0fa12bca3dfe217ae
