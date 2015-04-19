@@ -1,5 +1,7 @@
 .app-content {
     justify-content: center;
+    min-height: 800px;
+    padding-left: 15px;;
 }
 
 .card-content {
