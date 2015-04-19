@@ -90,5 +90,16 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 				loadSearchList();
 			}
 		});
+
+		/**
+		 * When content scrolled to bottom.
+		 */
+		$('.app-content').first().parent().on('scroll', function(e){
+			var elem = $(e.currentTarget);
+			if (elem[0].scrollHeight - elem.scrollTop() - elem.outerHeight() < 10)
+			{
+				$rootScope.loadedBottom();
+			}
+		});
 	}]);
 

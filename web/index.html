@@ -79,7 +79,7 @@
 				</div>
 			</md-toolbar>
 			<md-content>
-				<div class="app-content">
+				<div class="app-content" infinite-scroll="loadedBottom()" infinite-scroll-distance="1" infinite-scroll-disabled="0">
 					<div ng-view class="ul-container" layout-sm="column" layot="row" layout-gt-md="column" layout-wrap></div>
 				</div>
 			</md-content>
@@ -89,6 +89,7 @@
 		<script src="resources/angular/angular.js"></script>
 		<script src="resources/angular-aria/angular-aria.js"></script>
 		<script src="resources/angular-animate/angular-animate.js"></script>
+		<script src='resources/ngInfiniteScroll/build/ng-infinite-scroll.js'></script>
 		<script src="resources/hammerjs/hammer.js"></script>
 		<script src="resources/angular-material/angular-material.js"></script>
 		<script src="resources/moment/moment.js"></script>
