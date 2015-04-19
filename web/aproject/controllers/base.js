@@ -1,6 +1,12 @@
 controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$location', '$timeout', '$mdSidenav', '$log',
 	function ($rootScope, $scope, $http, $location, $timeout, $mdSidenav, $log) {
 
+		$rootScope.gotoStart = function(){
+			$location.path('/');
+		};
+
+		moment.locale('lv');
+
 		/**
 		 * Format date.
 		 * @param date
@@ -15,7 +21,7 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 		 * @returns {boolean}
 		 */
 		$rootScope.isMobile = function () {
-			if ($( window ).width() < 900 ){
+			if ($( window ).width() < 970 ){
 				return true;
 			} else {
 				return false;

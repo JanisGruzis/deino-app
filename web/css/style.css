@@ -157,3 +157,21 @@ ul[rn-carousel] > li:first-child {
     margin-top:30%;
     left: 0.4em;
 }
+
+h1, h2, h3 {
+	outline-width: 0px;
+}
+
+md-toolbar .header-search {
+	margin-top: 23px;
+	width: 160px;
+}
+
+md-toolbar .header-search input.md-input {
+	border-bottom-width: 2px;
+	color: rgba(255, 255, 255, 0.7);
+	text-align: center;
+	border-color: white;
+	padding-right: 3px;
+	padding-left: 3px;
+}

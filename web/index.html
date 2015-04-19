@@ -19,9 +19,28 @@
 	<body ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
-				<h2><a ng-href="#/">Deino</a></h2>
+				<h2 ng-show="!showSearch" ng-click="gotoStart()">Deino</h2>
 				<span flex></span>
-				<md-button ng-if="isMobile()" ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+
+				<md-button ng-show="showSearch" class="md-icon-button">
+					<md-icon md-svg-icon="img/ic_keyboard_backspace_24px.svg"></md-icon>
+				</md-button>
+
+				<md-input-container ng-show="showSearch" class="header-search">
+					<input ng-model="searchQuery"
+						   type="text"
+						/>
+				</md-input-container>
+
+				<md-button ng-show="showSearch" ng-click="showSearch = !showSearch" class="md-icon-button">
+					<md-icon md-svg-icon="img/ic_close_24px.svg"></md-icon>
+				</md-button>
+
+				<md-button ng-show="!showSearch" ng-click="showSearch = !showSearch" class="md-icon-button">
+					<md-icon md-svg-icon="img/ic_search_24px.svg"></md-icon>
+				</md-button>
+
+				<md-button ng-show="!showSearch" ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
 					<md-icon md-svg-icon="img/ic_menu_48px.svg"></md-icon>
 				</md-button>
 			</div>
@@ -36,6 +55,7 @@
 		<script src="resources/hammerjs/hammer.js"></script>
 		<script src="resources/angular-material/angular-material.js"></script>
 		<script src="resources/moment/moment.js"></script>
+		<script src="resources/moment/locale/lv.js"></script>
 		<script src="resources/underscore/underscore-min.js"></script>
 		<script src="resources/angular-route/angular-route.min.js"></script>
 		<!-- <script src="https://cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>  -->
