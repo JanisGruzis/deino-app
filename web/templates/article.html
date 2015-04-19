@@ -6,7 +6,7 @@
 				<li ng-repeat="oArticle in articleCluster.articles">
 
 					<div class="card-content-text">
-						<img ng-if="article.img_url"
+						<img ng-if="oArticle.img_url"
 							 ng-src="http://api.deino.clevercode.lv/api/image?path={{ oArticle.img_url }}"
 							 style="width:100%" alt=""/>
 
