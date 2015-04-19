@@ -22,7 +22,7 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 		 * @returns {boolean}
 		 */
 		$rootScope.isMobile = function () {
-			if ($( window ).width() < 900 ){
+			if ($( window ).width() < 970 ){
 				return true;
 			} else {
 				return false;
