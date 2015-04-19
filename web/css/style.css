@@ -1,28 +1,15 @@
 .app-content {
     justify-content: center;
-    /* width: 100%; */
-}
-md-card {
-    /* padding: 3px;*/
 }
 
 .card-content {
     padding: 0px;
-    /* height: 100%; */
-}
-
-.md-card-image{
-/*     width: 100%; */
 }
 
 .hidden {
     visibility: hidden;
 }
-.card {
-    /* width: 264px; */
-    /* flex-grow: 0; */
-    /* flex-shrink: 0; */
-}
+
 .card-content-text {
     padding: 0px 12px;
 }
@@ -33,8 +20,6 @@ md-card {
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
     margin: 0px;
-    /* text-decoration: none; */
-/*     color: #212121; */
     margin-top: 10px;
 }
 
@@ -42,82 +27,101 @@ p {
     -webkit-margin: 0px;
     margin: 5px 0px;
 }
+
 a {
     text-decoration: none;
-/*     color: #000000; */
 }
+
 .source {
     font-size: 0.8em;
     /* color: grey; */
     margin-left: 6px;
     text-transform: uppercase;
 }
+
 .date{
     font-size: 0.8em;
     color: grey;  
     text-align: right;
 }
+
 .description {
   font-size: 0.9em;
   line-height: 1.4em;
   text-align: justify;
   margin-bottom: 14px;
 }
+
 .alt .title {
   font-size: 0.9em;
-  /* font-weight: 400; */
 }
+
 .alt .source {
   font-size: 0.6em;
 }
+
 .source_date{
   margin-top: 0px;
 }
+
 md-icon.md-default-theme {
   color: white;
   height: 36px;
   width: 36px;
 }
-md-checkbox .md-container {
-  float: right;
-}
+
 .md-toolbar-tools h2 {
   font-size: 1.2em;
 }
+
 md-card {
   margin: 0px;
   height: 100%;
-  /* display: inline-block; */
 }
 
- ul[rn-carousel] {
-  /* width: 16.6%; */
-  height: 640px;
+ul[rn-carousel] {
   margin: 0 auto;
-  /* display: inline-block; */
 }
+
 [layout=column]{
   width: 100%;
 }
-.ul-container {
-/*   width: 100%; */
-}
+
 [adaptive-background] {
   height: 100%;
 }
-/* #### Mobile Phones Portrait #### */
-@media screen and (max-device-width: 480px) and (orientation: portrait){
-  /* some CSS here */
-  .ul-container {
-/*     width: 100%; */
-  }  
+
+md-sidenav md-radio-button {
+	margin:8px;
 }
-@media screen and (min-device-width: 480px){
-/*   section{
-    width: 100%;
-  }
-  .section-container {
-    display: inline-flex;
-    width: 16.6%;
-  } */
+
+md-sidenav md-input-container {
+	padding-bottom: 5px;
+}
+
+ul[rn-carousel] > li {
+	position: relative;
+	margin-left: -100%;
+}
+
+ul[rn-carousel] > li:first-child {
+	margin-left: 0;
+}
+
+.rn-carousel-control {
+	color: rgb(233,30,99);
+	font-weight: bolder;
+	font-size: 60px;
+	opacity: .5;
+	top:0px;
+	top: -14px;
+	outline-width: 0px;
+}
+
+.rn-carousel-control .right {
+	right: 18px;
+}
+
+.rn-carousel-control .left {
+	left: 18px;
 }
