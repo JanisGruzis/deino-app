@@ -80,7 +80,6 @@ md-card {
 }
 
 ul[rn-carousel] {
-  height: 640px;
   margin: 0 auto;
 }
 
@@ -98,4 +97,31 @@ md-sidenav md-radio-button {
 
 md-sidenav md-input-container {
 	padding-bottom: 5px;
+}
+
+ul[rn-carousel] > li {
+	position: relative;
+	margin-left: -100%;
+}
+
+ul[rn-carousel] > li:first-child {
+	margin-left: 0;
+}
+
+.rn-carousel-control {
+	color: rgb(233,30,99);
+	font-weight: bolder;
+	font-size: 60px;
+	opacity: .5;
+	top:0px;
+	top: -14px;
+	outline-width: 0px;
+}
+
+.rn-carousel-control .right {
+	right: 18px;
+}
+
+.rn-carousel-control .left {
+	left: 18px;
 }
