@@ -175,3 +175,19 @@ md-toolbar .header-search input.md-input {
 	padding-right: 3px;
 	padding-left: 3px;
 }
+
+::-webkit-scrollbar
+{
+    width: 0.5em;  /* for vertical scrollbars */
+    height: 0.5em; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: rgba(0, 0, 0, 0.3);
+}
