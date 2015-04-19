@@ -2,21 +2,32 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
     function ($rootScope, $scope, $http) {
 
 		var offset = 0;
-		var limit = 10;
+		var limit = 9;
 		articles = [];
 		var loading = false;
 
 		var loadArticles = function() {
-			var checkedSources = _.filter($rootScope.sources, function (item) {
-				return item.checked;
-			});
+			var sourceIds = _.chain($scope.sources)
+				.filter(function (item) {
+					return item.checked;
+				})
+				.map(function (item) {
+					return item.id;
+				})
+				.value();
 
-			var sourceIds = _.map(checkedSources, function (item) {
-				return item.id;
-			});
+			var categoryIds = _.chain($scope.categories)
+				.filter(function (item) {
+					return item.checked;
+				})
+				.map(function (item) {
+					return item.id;
+				})
+				.value();
 
 			var data = {
 				sources: sourceIds,
+				categories: categoryIds,
 				query: $scope.searchQuery,
 				period: $scope.searchPeriod,
 				offset: offset,
@@ -52,42 +63,67 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 			;
 		}
 
-		loadArticles();
+		$http.get('http://api.deino.clevercode.lv/api/sources')
+			.success(function (data) {
+				$scope.sources = data;
+			});
 
-		/**
-		 * When content scrolled to bottom load data.
-		 */
-		$rootScope.loadedBottom = function(){
+		$scope.searchPeriod = 'all';
+		if (!loading)
+		{
+			loadArticles();
+		}
+
+		$('.app-content').parent().on('scroll', function(e){
+			var elem = $(e.currentTarget);
+			if (elem[0].scrollHeight - elem.scrollTop() - elem.outerHeight() < 10)
+			{
+				if (!loading)
+				{
+					loadArticles();
+				}
+			}
+		});
+
+		$rootScope.doSearch = function(){
 			if (!loading)
 			{
+				articles = [];
+				offset = 0;
 				loadArticles();
 			}
 		};
 
-		$scope.$watch('searchQuery', function(newValue, oldValue){
-			if (oldValue != newValue && $.trim(newValue))
-			{
-				articles = [];
-				offset = 0;
-				loadArticles();
-			}
-		});
-
 		$scope.$watch('searchPeriod', function(newValue, oldValue){
-			if (oldValue != newValue && newValue != 'all')
+			if (oldValue != newValue)
 			{
-				articles = [];
-				offset = 0;
-				loadArticles();
+				if (!loading) {
+					articles = [];
+					offset = 0;
+					loadArticles();
+				}
 			}
 		});
 
 		$scope.$watch('sources', function(newValue, oldValue){
 			if (oldValue != newValue)
 			{
-				articles = [];
-				offset = 0;
-				loadArticles();
+				if (!loading) {
+					articles = [];
+					offset = 0;
+					loadArticles();
+				}
+			}
+		}, true);
+
+		$scope.$watch('categories', function(newValue, oldValue){
+			if (oldValue != newValue)
+			{
+				if (!loading) {
+					articles = [];
+					offset = 0;
+					loadArticles();
+				}
 			}
 		}, true);
     }]);
