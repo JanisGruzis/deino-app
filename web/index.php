@@ -22,14 +22,9 @@ function llr($file)
     <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php llr("resources/font-awesome/css/font-awesome.min.css");?>">
-    <style>
-        .ng-cloak {
-            display: none !important;
-        }
-    </style>
 
 </head>
-<body class="ng-cloak" ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center" ng-cloak>
+<body  ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center" >
 <md-toolbar>
     <div class="md-toolbar-tools">
         <h2 ng-show="!showSearch" ng-click="gotoStart()">Deino</h2>
