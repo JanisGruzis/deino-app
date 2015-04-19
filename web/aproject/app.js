@@ -1,12 +1,12 @@
 var app = angular.module('deino', [
 	'ngRoute',
-// 	'ngMdIcons',
 	'ngAnimate',
 	'ngAria',
 	'ngMaterial',
 	'mb-adaptive-backgrounds',
 	'controllers',
-	'angular-carousel'
+	'angular-carousel',
+	'infinite-scroll'
 ]);
 
 var controllers = angular.module('controllers', []);

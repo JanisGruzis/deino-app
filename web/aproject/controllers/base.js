@@ -91,7 +91,16 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 			}
 		});
 
-		/* start left controller */
+		/**
+		 * When content scrolled to bottom.
+		 */
+		$('.app-content').first().parent().on('scroll', function(e){
+			var elem = $(e.currentTarget);
+			if (elem[0].scrollHeight - elem.scrollTop() - elem.outerHeight() < 10)
+			{
+				$rootScope.loadedBottom();
+			}
+		});
 
 		$scope.toggleLeft = buildToggler('left');
 		/**
@@ -106,6 +115,5 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 					});
 			}
 		}
-		/*end left controller */
 	}]);
 
