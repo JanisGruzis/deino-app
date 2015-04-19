@@ -1,41 +1,32 @@
-<div class="section-container" ng-repeat="(articles_key, articles) in catClustArticles" flex>
-    <section layout-gt-md="column">
-        <md-subheader class="md-primary" flex>{{ categories[articles_key].name }}</md-subheader>
-        <div layout-gt-md="row" ng-repeat="articleCluster in articles" flex>
-            <ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex" rn-carousel-buffered flex>
-                <li ng-repeat="oArticle in articleCluster.articles">
-                    <md-card>
-                        <div adaptive-background class="adaptive-background-go">
-                            <md-card-content layout-gt-md="row" class="card-content">
-                                <!--<img ng-src="{{ oArticle.img_url }}"-->
-                                <!--alt=""-->
-                                <!--class="md-card-image"-->
-                                <!--data-adaptive-background="1"-->
-                                <!--ng-if="oArticle.img_url"/>-->
-                                <img ng-src="{{ oArticle.img_url }}" alt="" class="md-card-image"
-                                     data-adaptive-background="1"/>
+<div ng-repeat="(articles_key, articles) in catClustArticles" flex>
+        <h2>{{ categories[articles_key].name }}</h2>
+        <div class="row">
+        <div adaptive-background class="col-md-4" ng-repeat="articleCluster in articles">
+		<div class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+                <div ng-repeat="oArticle in articleCluster.articles">
+                   
+					<div class="card-content-text">
+						<img ng-src="http://api.deino.clevercode.lv/api/image?path={{ oArticle.img_url }}"
+							style="width:100%" alt="" data-adaptive-background="1"/>
 
-                                <div class="card-content-text">
-                                    <h3 class="title">
-                                        <a ng-href="{{ oArticle.url }}" target="_blank">
-                                            {{oArticle.title}}
-                                        </a>
-                                    </h3>
+						<h3 class="title">
+							<a ng-href="{{ oArticle.url }}" target="_blank">
+								{{oArticle.title}}
+							</a>
+						</h3>
 
-                                    <p class="source_date" layout="row">
-                                        <span class="source" flex>{{oArticle.source}}</span>
-                                        <span class="date" flex>{{getMoment(oArticle.date)}}</span>
-                                    </p>
+						<p class="source_date" layout="row">
+							<span class="source" flex>{{oArticle.source}}</span>
+							<span class="date" flex>{{getMoment(oArticle.date)}}</span>
+						</p>
 
-                                    <p class="description">
-                                        {{oArticle.description}}
-                                    </p>
-                                </div>
-                            </md-card-content>
-                        </div>
-                    </md-card>
-                </li>
-            </ul>
+						<p class="description">
+							{{oArticle.description}}
+						</p>
+					</div>
+                </div>
         </div>
-    </section>
+        </div>
+        </div>
 </div>
