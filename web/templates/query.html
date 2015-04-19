@@ -1,5 +1,5 @@
 <h2>{{ categories[cluster.category_id].name }}</h2>
-<div class="row">
+<div class="row" ng-repeat="articles in chunks">
 	<div class="col-md-4" ng-repeat="article in articles">
 		<div class="card-content-text">
 			<img ng-src="http://api.deino.clevercode.lv/api/image?path={{ article.img_url }}"
