@@ -59,6 +59,8 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 		$scope.$watch('searchQuery', function(newValue, oldValue){
 			if (oldValue != newValue && $.trim(newValue))
 			{
+				$scope.articles = [];
+				offset = 0;
 				loadArticles();
 			}
 		});
@@ -66,6 +68,8 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 		$scope.$watch('searchPeriod', function(newValue, oldValue){
 			if (oldValue != newValue && newValue != 'all')
 			{
+				$scope.articles = [];
+				offset = 0;
 				loadArticles();
 			}
 		});
@@ -73,6 +77,8 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 		$scope.$watch('sources', function(newValue, oldValue){
 			if (oldValue != newValue)
 			{
+				$scope.articles = [];
+				offset = 0;
 				loadArticles();
 			}
 		}, true);
