@@ -1,14 +1,13 @@
 <div ng-repeat="(articles_key, articles) in catClustArticles" flex>
-        <h2>{{ categories[articles_key].name }}</h2>
-        <div class="row">
-        <div class="col-md-4" ng-repeat="articleCluster in articles">
-		<div class="carousel slide" data-ride="carousel">
-			  <!-- Indicators -->
-                <div ng-repeat="oArticle in articleCluster.articles">
-                   
+	<h2>{{ categories[articles_key].name }}</h2>
+	<div class="row">
+		<div class="col-md-4" ng-repeat="articleCluster in articles">
+			<ul rn-carousel rn-carousel-controls>
+				<li ng-repeat="oArticle in articleCluster.articles">
+
 					<div class="card-content-text">
 						<img ng-src="http://api.deino.clevercode.lv/api/image?path={{ oArticle.img_url }}"
-							style="width:100%" alt=""/>
+							 style="width:100%" alt=""/>
 
 						<h3 class="title">
 							<a ng-href="{{ oArticle.url }}" target="_blank">
@@ -25,8 +24,8 @@
 							{{oArticle.description}}
 						</p>
 					</div>
-                </li>
-        	</ul>
-        </div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>

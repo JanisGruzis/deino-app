@@ -29,14 +29,23 @@ controllers.controller('CategoryController', ['$rootScope', '$scope', '$http',
 			$http.get(url)
 				.success(function (data) {
 					loading = false;
-					$scope.clusters = $scope.clusters.concat(_.toArray(data));
-				});
-
-			offset += limit;
+					data = _.toArray(data);
+					$scope.clusters = $scope.clusters.concat(data);
+					if (data.length > 0)
+					{
+						offset += limit;
+					}
+				})
+				.error(function(){
+					loading = false;
+				})
+			;
 		};
 
 		$scope.loadClusters = loadClusters;
-		loadClusters();
+		if (!loading) {
+			loadClusters();
+		}
 
 		/**
 		 * When content scrolled to bottom load data.
