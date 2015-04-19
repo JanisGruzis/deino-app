@@ -26,7 +26,10 @@
 					<div layout="column" layout-padding>
 						<md-input-container>
 							<label>Meklēt rakstus</label>
-							<input ng-model="searchQuery" type="text"/>
+							<input ng-model="searchQuery"
+								   ng-model-options="{ debounce: 2000 }"
+								   type="text"
+								/>
 						</md-input-container>
 
 						<div layout-padding>Periods</div>
@@ -40,14 +43,12 @@
 
 						<div layout-padding>Avots</div>
 
-						<md-radio-group ng-model="searchPeriod" class="md-primary">
-							<md-radio-button ng-checked="source.checked"
-										 ng-click="source.checked = !source.checked"
-										 ng-repeat="source in sources"
-										 class="md-primary">
-								{{ source.name }}
-							</md-radio-button>
-						</md-radio-group>
+						<md-checkbox ng-checked="source.checked"
+									 ng-click="source.checked = !source.checked"
+									 ng-repeat="source in sources"
+									 class="md-primary">
+							{{ source.name }}
+						</md-checkbox>
 					</div>
 				</section>
 
@@ -108,5 +109,6 @@
 		<script src="aproject/controllers/base.js"></script>
 		<script src="aproject/controllers/article.js"></script>
 		<script src="aproject/controllers/category.js"></script>
+		<script src="aproject/controllers/query.js"></script>
 	</body>
 </html>

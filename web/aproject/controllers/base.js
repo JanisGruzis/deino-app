@@ -37,7 +37,7 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 			.success(function (data) {
 				$rootScope.categories = data;
 
-				$scope.$watch('categories', function(oldValue, newValue){
+				$scope.$watch('categories', function(newValue, oldValue){
 					if (oldValue != newValue)
 					{
 						loadCategoryList();
@@ -52,7 +52,7 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 			.success(function (data) {
 				$rootScope.sources = data;
 
-				$scope.$watch('sources', function(oldValue, newValue){
+				$scope.$watch('sources', function(newValue, oldValue){
 					if (oldValue != newValue)
 					{
 						loadSearchList();
@@ -77,14 +77,14 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 			$location.path('/query');
 		};
 
-		$scope.$watch('searchQuery', function(oldValue, newValue){
+		$scope.$watch('searchQuery', function(newValue, oldValue){
 			if (oldValue != newValue && $.trim(newValue))
 			{
 				loadSearchList();
 			}
 		});
 
-		$scope.$watch('searchPeriod', function(oldValue, newValue){
+		$scope.$watch('searchPeriod', function(newValue, oldValue){
 			if (oldValue != newValue && newValue != 'all')
 			{
 				loadSearchList();
