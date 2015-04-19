@@ -109,19 +109,51 @@ ul[rn-carousel] > li:first-child {
 }
 
 .rn-carousel-control {
-	color: rgb(233,30,99);
+	color: #FFF;
 	font-weight: bolder;
 	font-size: 60px;
-	opacity: .5;
+    opacity: 1;
 	top:0px;
 	top: -14px;
 	outline-width: 0px;
 }
 
-.rn-carousel-control .right {
-	right: 18px;
-}
-
 .rn-carousel-control .left {
 	left: 18px;
+}
+.rn-carousel-control.rn-carousel-control-next:before {
+    position: absolute;
+    font-family: FontAwesome;
+    left: -0.2em;
+    font-size: 0.8em;
+    content: "\f138";
+    background-color: #607D8B;
+    padding: 1px;
+    border-radius: 100px;
+    line-height: 0.6em;
+}
+.rn-carousel-control.rn-carousel-control-prev:before{
+    position: absolute;
+    font-family: FontAwesome;
+    left: -0.2em;
+    font-size: 0.8em;
+    content: "\f137";
+    background-color: #607D8B;
+    padding: 1px;
+    border-radius: 100px;
+    line-height: 0.6em;
+}
+
+.rn-carousel-control.rn-carousel-control-prev:hover::before,.rn-carousel-control.rn-carousel-control-next:hover::before{
+    color: #607D8B;
+    background-color: #fff;
+}
+
+.rn-carousel-control.rn-carousel-control-next{
+    margin-top:30%;
+    right: 0.9em;
+}
+.rn-carousel-control.rn-carousel-control-prev{
+    margin-top:30%;
+    left: 0.4em;
 }
