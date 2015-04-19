@@ -1,5 +1,5 @@
 <h2>{{ categories[cluster.category_id].name }}</h2>
-<div class="row">
+<div class="row" ng-repeat="clusters in chunks">
 	<div class="col-md-4" ng-repeat="cluster in clusters">
 		<ul rn-carousel rn-carousel-controls>
 			<li ng-repeat="article in cluster.articles">

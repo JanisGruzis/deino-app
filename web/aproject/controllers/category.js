@@ -3,7 +3,7 @@ controllers.controller('CategoryController', ['$rootScope', '$scope', '$http',
 
 		var offset = 0;
 		var limit = 10;
-		$scope.clusters = [];
+		var clusters = [];
 		var loading = false;
 
 		var loadClusters = function() {
@@ -30,11 +30,19 @@ controllers.controller('CategoryController', ['$rootScope', '$scope', '$http',
 				.success(function (data) {
 					loading = false;
 					data = _.toArray(data);
-					$scope.clusters = $scope.clusters.concat(data);
+					clusters = clusters.concat(data);
 					if (data.length > 0)
 					{
 						offset += limit;
 					}
+
+					$scope.chunks = _.chain(clusters)
+						.groupBy(function(elem, index) {
+							return Math.floor(index/3);
+						})
+						.toArray()
+						.value()
+					;
 				})
 				.error(function(){
 					loading = false;
@@ -60,7 +68,7 @@ controllers.controller('CategoryController', ['$rootScope', '$scope', '$http',
 		$scope.$watch('categories', function(newValue, oldValue){
 			if (oldValue != newValue && oldValue)
 			{
-				$scope.clusters = [];
+				clusters = [];
 				offset = 0;
 				loadClusters();
 			}

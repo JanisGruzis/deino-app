@@ -3,7 +3,7 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 
 		var offset = 0;
 		var limit = 10;
-		$scope.articles = [];
+		articles = [];
 		var loading = false;
 
 		var loadArticles = function() {
@@ -32,11 +32,19 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 				.success(function (data) {
 					loading = false;
 					data = _.toArray(data);
-					$scope.articles = $scope.articles.concat(data);
+					articles = articles.concat(data);
 					if (data.length > 0)
 					{
 						offset += limit;
 					}
+
+					$scope.chunks = _.chain(articles)
+						.groupBy(function(elem, index) {
+							return Math.floor(index/3);
+						})
+						.toArray()
+						.value()
+					;
 				})
 				.error(function(){
 					loading = false;
@@ -59,7 +67,7 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 		$scope.$watch('searchQuery', function(newValue, oldValue){
 			if (oldValue != newValue && $.trim(newValue))
 			{
-				$scope.articles = [];
+				articles = [];
 				offset = 0;
 				loadArticles();
 			}
@@ -68,7 +76,7 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 		$scope.$watch('searchPeriod', function(newValue, oldValue){
 			if (oldValue != newValue && newValue != 'all')
 			{
-				$scope.articles = [];
+				articles = [];
 				offset = 0;
 				loadArticles();
 			}
@@ -77,7 +85,7 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 		$scope.$watch('sources', function(newValue, oldValue){
 			if (oldValue != newValue)
 			{
-				$scope.articles = [];
+				articles = [];
 				offset = 0;
 				loadArticles();
 			}
