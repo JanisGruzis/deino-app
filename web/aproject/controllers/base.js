@@ -1,5 +1,5 @@
-controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$location',
-	function ($rootScope, $scope, $http, $location) {
+controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$location', '$timeout', '$mdSidenav', '$log',
+	function ($rootScope, $scope, $http, $location, $timeout, $mdSidenav, $log) {
 
 		/**
 		 * Goto start.
@@ -101,5 +101,19 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 				$rootScope.loadedBottom();
 			}
 		});
+
+		$scope.toggleLeft = buildToggler('left');
+		/**
+		 * Build handler to open/close a SideNav; when animation finishes
+		 * report completion in console
+		 */
+		function buildToggler(navID) {
+			return function() {
+				return $mdSidenav(navID).toggle()
+					.then(function () {
+						$log.debug("toggle " + navID + " is done");
+					});
+			}
+		}
 	}]);
 

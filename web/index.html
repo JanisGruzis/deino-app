@@ -15,9 +15,22 @@
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
 
 	</head>
-	<body ng-app="deino" ng-controller="BaseController" layout="row" layout-align="top center">
+	<body ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2 ng-click="gotoStart()">Deino</h2>
+				<span flex></span>
+				<md-button ng-if="isMobile()" ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+					<md-icon md-svg-icon="img/ic_menu_48px.svg"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<div layout="row">
 		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="!isMobile()">
-			<md-toolbar class="md-theme-indigo">
+			<md-toolbar ng-if="isMobile()">
+				<div class="md-toolbar-tools">
+					<h2>Filtrs</h2>
+				</div>
 			</md-toolbar>
 			<md-content layout-padding>
 
@@ -69,20 +82,12 @@
 		</md-sidenav>
 
 		<div layout="column">
-			<md-toolbar>
-				<div class="md-toolbar-tools">
-					<h2 ng-click="gotoStart()">Deino</h2>
-					<span flex></span>
-					<md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
-						<md-icon md-svg-icon="img/ic_menu_48px.svg"></md-icon>
-					</md-button>
-				</div>
-			</md-toolbar>
 			<md-content>
 				<div class="app-content" infinite-scroll="loadedBottom()" infinite-scroll-distance="1" infinite-scroll-disabled="0">
 					<div ng-view class="ul-container" layout-sm="column" layot="row" layout-gt-md="column" layout-wrap></div>
 				</div>
 			</md-content>
+		</div>
 		</div>
 		<script src="resources/jquery/dist/jquery.min.js"></script>
 		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
