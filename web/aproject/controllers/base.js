@@ -8,6 +8,9 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 			$location.path('/');
 		};
 
+		/* set moment locale */
+
+		moment.locale('lv');
 		/**
 		 * Format date.
 		 * @param date
