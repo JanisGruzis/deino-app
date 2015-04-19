@@ -97,7 +97,9 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 			var elem = $(e.currentTarget);
 			if (elem[0].scrollHeight - elem.scrollTop() - elem.outerHeight() < 10)
 			{
-				$rootScope.loadedBottom();
+				if (_.isFunction($rootScope.loadedBottom)) {
+					$rootScope.loadedBottom();
+				}
 			}
 		});
 

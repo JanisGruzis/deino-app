@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="css/style.css"/>
 		<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
 
 	</head>
 	<body ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center">
@@ -83,8 +83,8 @@
 		</md-sidenav>
 
 		<div layout="column">
-			<md-content>
-				<div class="app-content" infinite-scroll="loadedBottom()" infinite-scroll-distance="1" infinite-scroll-disabled="0">
+			<md-content style="overflow-x: hidden;">
+				<div class="app-content">
 					<div ng-view class="ul-container" layout-sm="column" layot="row" layout-gt-md="column" layout-wrap></div>
 				</div>
 			</md-content>
