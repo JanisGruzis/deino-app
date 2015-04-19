@@ -5,7 +5,8 @@ var app = angular.module('deino', [
 	'ngMaterial',
 	'mb-adaptive-backgrounds',
 	'controllers',
-	'angular-carousel'
+	'angular-carousel',
+	'ngScroll'
 ]);
 
 var controllers = angular.module('controllers', []);

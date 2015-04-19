@@ -1,23 +1,18 @@
-controllers.controller('CategoryController', ['$rootScope', '$scope', '$http',
-    function ($rootScope, $scope, $http) {
+controllers.controller('CategoryController', ['$rootScope', '$scope', '$http', '$routeParams',
+    function ($rootScope, $scope, $http, $routeParams) {
 
 		var offset = 0;
-		var limit = 10;
+		var limit = 9;
 		var clusters = [];
 		var loading = false;
 
+		$scope.category = $routeParams.category;
+
 		var loadClusters = function() {
 			loading = true;
-			var checkedCategories = _.filter($rootScope.categories, function (item) {
-				return item.checked;
-			});
-
-			var categoryIds = _.map(checkedCategories, function (item) {
-				return item.id;
-			});
 
 			var data = {
-				categories: categoryIds,
+				categories: [$routeParams.category],
 				offset: offset,
 				limit: limit
 			};
@@ -49,28 +44,20 @@ controllers.controller('CategoryController', ['$rootScope', '$scope', '$http',
 				})
 			;
 		};
-
 		$scope.loadClusters = loadClusters;
+
 		if (!loading) {
 			loadClusters();
 		}
 
-		/**
-		 * When content scrolled to bottom load data.
-		 */
-		$rootScope.loadedBottom = function(){
-			if (!loading)
+		$('.app-content').parent().on('scroll', function(e){
+			var elem = $(e.currentTarget);
+			if (elem[0].scrollHeight - elem.scrollTop() - elem.outerHeight() < 10)
 			{
-				loadClusters();
+				if (!loading)
+				{
+					loadClusters();
+				}
 			}
-		};
-
-		$scope.$watch('categories', function(newValue, oldValue){
-			if (oldValue != newValue && oldValue)
-			{
-				clusters = [];
-				offset = 0;
-				loadClusters();
-			}
-		}, true);
+		});
     }])

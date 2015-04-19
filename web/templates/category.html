@@ -1,29 +1,57 @@
-<h2>{{ categories[cluster.category_id].name }}</h2>
-<div class="row" ng-repeat="clusters in chunks">
-	<div class="col-md-4" ng-repeat="cluster in clusters">
-		<ul rn-carousel rn-carousel-controls>
-			<li ng-repeat="article in cluster.articles">
-				<div class="card-content-text">
-					<img ng-if="article.img_url"
-						 ng-src="http://api.deino.clevercode.lv/api/image?path={{ article.img_url }}"
-						 style="width:100%" alt=""/>
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="!isMobile()">
+	<md-toolbar ng-if="isMobile()">
+		<div class="md-toolbar-tools">
+			<h2>Filtrs</h2>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
 
-					<h3 class="title">
-						<a ng-href="{{ article.url }}" target="_blank">
-							{{article.title}}
-						</a>
-					</h3>
+		<section>
+			<div layout="column" layout-padding>
+				<md-button ng-href="#/">Uz sākumu</md-button>
 
-					<p class="source_date" layout="row">
-						<span class="source" flex>{{ article.source }} ({{ categories[cluster.category_id].name }})</span>
-						<span class="date" flex>{{ formatDate(article.date) }}</span>
-					</p>
+				<md-button ng-href="#/category/{{ category.id }}"
+						   ng-repeat="category in categories">
+					{{ category.name }}</md-button>
+			</div>
+		</section>
+	</md-content>
+</md-sidenav>
 
-					<p class="description">
-						{{article.description}}
-					</p>
+<div layout="column">
+	<md-content style="overflow-x: hidden;" ng-scroll="onScroll($event);">
+		<div class="app-content">
+			<div class="ul-container" layout-sm="column" layot="row" layout-gt-md="column" layout-wrap>
+				<h2 layout-padding>{{ categories[category].name }}</h2>
+				<div class="row" ng-repeat="clusters in chunks">
+					<div class="col-md-4" ng-repeat="cluster in clusters">
+						<ul rn-carousel rn-carousel-controls>
+							<li ng-repeat="article in cluster.articles">
+								<div class="card-content-text">
+									<img ng-if="article.img_url"
+										 ng-src="http://api.deino.clevercode.lv/api/image?path={{ article.img_url }}"
+										 style="width:100%" alt=""/>
+
+									<h3 class="title">
+										<a ng-href="{{ article.url }}" target="_blank">
+											{{article.title}}
+										</a>
+									</h3>
+
+									<p class="source_date" layout="row">
+										<span class="source" flex>{{ article.source }} ({{ categories[cluster.category_id].name }})</span>
+										<span class="date" flex>{{ formatDate(article.date) }}</span>
+									</p>
+
+									<p class="description">
+										{{article.description}}
+									</p>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
-			</li>
-		</ul>
-	</div>
+			</div>
+		</div>
+	</md-content>
 </div>

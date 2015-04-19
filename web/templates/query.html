@@ -1,25 +1,90 @@
-<h2>{{ categories[cluster.category_id].name }}</h2>
-<div class="row" ng-repeat="articles in chunks">
-	<div class="col-md-4" ng-repeat="article in articles">
-		<div class="card-content-text">
-			<img ng-src="http://api.deino.clevercode.lv/api/image?path={{ article.img_url }}"
-				 ng-if="article.img_url"
-				 style="width:100%" alt=""/>
-
-			<h3 class="title">
-				<a ng-href="{{ article.url }}" target="_blank">
-					{{article.title}}
-				</a>
-			</h3>
-
-			<p class="source_date" layout="row">
-				<span class="source" flex>{{ article.source }} ({{ categories[article.category_id].name }})</span>
-				<span class="date" flex>{{ formatDate(article.date) }}</span>
-			</p>
-
-			<p class="description">
-				{{ article.description }}
-			</p>
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="!isMobile()">
+	<md-toolbar ng-if="isMobile()">
+		<div class="md-toolbar-tools">
+			<h2>Filtrs</h2>
 		</div>
-	</div>
+	</md-toolbar>
+	<md-content layout-padding>
+
+		<section>
+			<md-subheader class="md-primary">Meklēt</md-subheader>
+			<div layout="column" layout-padding>
+				<md-input-container>
+					<label>Meklēt rakstus</label>
+					<input ng-model="searchQuery"
+						   ng-model-options="{ debounce: 2000 }"
+						   type="text"
+						/>
+				</md-input-container>
+
+				<div layout-padding>Periods</div>
+
+				<md-radio-group ng-model="searchPeriod" class="md-primary">
+					<md-radio-button value="all">viss</md-radio-button>
+					<md-radio-button value="day">diena</md-radio-button>
+					<md-radio-button value="week">nedēļa</md-radio-button>
+					<md-radio-button value="month">mēnesis</md-radio-button>
+				</md-radio-group>
+
+				<div layout-padding>Avots</div>
+
+				<md-checkbox ng-checked="source.checked"
+							 ng-click="source.checked = !source.checked"
+							 ng-repeat="source in sources"
+							 class="md-primary">
+					{{ source.name }}
+				</md-checkbox>
+			</div>
+		</section>
+
+		<section>
+			<md-subheader class="md-primary">Kategorijas</md-subheader>
+
+			<div layout="column" layout-padding>
+				<md-checkbox ng-repeat="category in categories"
+							 ng-checked="category.checked"
+							 ng-click="category.checked = !category.checked"
+							 class="md-primary">
+					{{ category.name }}
+				</md-checkbox>
+			</div>
+		</section>
+
+	</md-content>
+</md-sidenav>
+
+<div layout="column">
+	<md-content style="overflow-x: hidden;">
+		<div class="app-content">
+			<div class="ul-container" layout-sm="column" layot="row" layout-gt-md="column" layout-wrap>
+				<div ng-repeat="(articles_key, articles) in catClustArticles" flex>
+					<h2>{{ categories[cluster.category_id].name }}</h2>
+					<div class="row" ng-repeat="articles in chunks">
+						<div class="col-md-4" ng-repeat="article in articles">
+							<div class="card-content-text">
+								<img ng-src="http://api.deino.clevercode.lv/api/image?path={{ article.img_url }}"
+									 ng-if="article.img_url"
+									 style="width:100%" alt=""/>
+
+								<h3 class="title">
+									<a ng-href="{{ article.url }}" target="_blank">
+										{{article.title}}
+									</a>
+								</h3>
+
+								<p class="source_date" layout="row">
+									<span class="source" flex>{{ article.source }} ({{ categories[article.category_id].name }})</span>
+									<span class="date" flex>{{ formatDate(article.date) }}</span>
+								</p>
+
+								<p class="description">
+									{{ article.description }}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</md-content>
 </div>

@@ -5,7 +5,7 @@ app.config(['$routeProvider',
                 templateUrl: 'templates/query.html',
                 controller: 'QueryController'
             }).
-            when('/category', {
+            when('/category/:category', {
                 templateUrl: 'templates/category.html',
                 controller: 'CategoryController'
             }).
