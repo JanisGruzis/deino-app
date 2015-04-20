@@ -30,6 +30,8 @@ bower install
 ```
 Tagad jūs varat izvietot index.php failu savā serverī. Ja jums lokalā mašīna nav konfigurēts PHP serveris, mēs iesakām izmantot XAMPP (https://www.apachefriends.org/index.html)
 
+Lietotni arī tika iepakota kā native-lietotne priekš Windows Phone. To var lejupladēt šeit: http://www.windowsphone.com/s?appid=1d1cc60a-f220-4d3d-ab09-3cf75c0c9145
+
 ## Projekta vēsture
 
 Projekts ir izveidots kā pieteikums "Clusterpoint Challenge" konkursām (https://challenge.clusterpoint.com/).
