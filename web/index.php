@@ -7,7 +7,6 @@ function llr($file)
 }
 
 ?>
-
 <!doctype html>
 <html>
 	<head lang="en">
@@ -24,6 +23,7 @@ function llr($file)
 		<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="<?php llr("resources/font-awesome/css/font-awesome.min.css");?>">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100italic,100,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic-ext,greek,greek-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
 
 	</head>
 	<body ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center" ng-cloak class="ng-cloak">
