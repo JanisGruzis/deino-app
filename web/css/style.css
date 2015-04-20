@@ -164,6 +164,12 @@ h1, h2, h3 {
 	outline-width: 0px;
 }
 
+h2.logo a,
+h2.logo a:hover {
+	color: white;
+	text-decoration: none;
+}
+
 md-toolbar .header-search {
 	margin-top: 23px;
 	width: 160px;

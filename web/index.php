@@ -29,7 +29,7 @@ function llr($file)
 	<body ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center" ng-cloak class="ng-cloak">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
-				<h2 ng-show="!showSearch" ng-click="gotoStart()">Deino</h2>
+				<h2 class="logo" ng-show="!showSearch"><a href="#/">Deino</a></h2>
 				<span flex></span>
 
 				<md-button ng-show="showSearch" ng-click="showSearch = !showSearch; gotoStart();" class="md-icon-button">
