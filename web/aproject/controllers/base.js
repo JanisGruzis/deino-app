@@ -1,6 +1,14 @@
 controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$location', '$timeout', '$mdSidenav', '$log',
 	function ($rootScope, $scope, $http, $location, $timeout, $mdSidenav, $log) {
 
+		$rootScope.gotoSearch = function(){
+			$location.path('/query');
+			if ($rootScope.doSearch)
+			{
+				$rootScope.doSearch();
+			}
+		};
+
 		$rootScope.gotoStart = function(){
 			$location.path('/');
 		};
