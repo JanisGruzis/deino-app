@@ -20,7 +20,7 @@
 	<md-content style="overflow-x: hidden;">
 		<div class="app-content">
 			<div class="ul-container" layout-sm="column" layot="row" layout-gt-md="column" layout-wrap>
-				<div ng-repeat="(articles_key, articles) in catClustArticles" flex>
+				<div ng-repeat="(articles_key, articles) in catClustArticles" >
 					<h2 layout-padding>{{ categories[articles_key].name }}</h2>
 					<div class="row">
 						<div class="col-md-4" ng-repeat="articleCluster in articles">
@@ -30,7 +30,7 @@
 									<div class="card-content-text">
 										<img ng-if="oArticle.img_url"
 											 ng-src="http://api.deino.clevercode.lv/api/image?path={{ oArticle.img_url }}"
-											 style="width:100%" alt=""/>
+											 class="article_img" alt=""/>
 
 										<h3 class="title">
 											<a ng-href="{{ oArticle.url }}" target="_blank">

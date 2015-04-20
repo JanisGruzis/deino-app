@@ -26,7 +26,7 @@ function llr($file)
 		<link rel="stylesheet" href="<?php llr("resources/font-awesome/css/font-awesome.min.css");?>">
 
 	</head>
-	<body ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center">
+	<body ng-app="deino" ng-controller="BaseController" layout="column" layout-align="top center" ng-cloak class="ng-cloak">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2 ng-show="!showSearch" ng-click="gotoStart()">Deino</h2>
