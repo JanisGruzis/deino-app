@@ -48,7 +48,7 @@ function llr($file)
 					<md-icon md-svg-icon="img/ic_search_24px.svg"></md-icon>
 				</md-button>
 
-				<md-button ng-show="!showSearch" ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
+				<md-button ng-show="isMobile()" ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
 					<md-icon md-svg-icon="img/ic_menu_48px.svg"></md-icon>
 				</md-button>
 			</div>
