@@ -196,8 +196,3 @@ md-toolbar .header-search input.md-input {
 .ng-cloak{
     display:none;
 }
-
-.article_img{
-    width: 100%;
-    height: 20em;
-}
