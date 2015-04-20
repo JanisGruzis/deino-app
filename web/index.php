@@ -43,7 +43,7 @@ function llr($file)
 				</md-input-container>
 
 				<md-button ng-click="doSearch()" ng-show="showSearch" class="md-icon-button">
-					<md-icon md-svg-icon="img/ic_keyboard_backspace_24px.svg"></md-icon>
+					<md-icon md-svg-icon="img/ic_search_24px.svg"></md-icon>
 				</md-button>
 
 				<md-button ng-show="!showSearch" ng-click="showSearch = !showSearch; gotoSearch();" class="md-icon-button">
