@@ -198,5 +198,5 @@ md-toolbar .header-search input.md-input {
 }
 
 .article_img {
-	width: 100%;
+	max-width: 100%;
 }
