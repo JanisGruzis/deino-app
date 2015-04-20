@@ -57,9 +57,6 @@
                             <img ng-src="http://api.deino.clevercode.lv/api/image?path={{ article.img_url }}"
                                  ng-if="article.img_url"
                                  class="article_img" alt=""/>
-                            <img ng-if="!article.img_url"
-                                 ng-src="/img/stub.gif"
-                                 class="article_img" alt=""/>
 
                             <h3 class="title">
                                 <a ng-href="{{ article.url }}" target="_blank">
