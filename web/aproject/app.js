@@ -7,8 +7,10 @@ var app = angular.module('deino', [
 	'controllers',
 	'angular-carousel',
 	'ngScroll',
-	'filters'
+	'filters',
+	'directives'
 ]);
 
 var controllers = angular.module('controllers', []);
 var filters = angular.module('filters', []);
+var directives = angular.module('directives', []);

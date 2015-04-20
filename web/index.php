@@ -36,6 +36,7 @@ function llr($file)
 
 				<md-input-container ng-show="showSearch" class="header-search">
 					<input ng-model="searchQuery"
+						   ng-enter="doSearch()"
 						   type="text"
 						/>
 				</md-input-container>
@@ -76,6 +77,7 @@ function llr($file)
 		<script src="<?php llr("aproject/app.js");?>"></script>
 		<script src="<?php llr("aproject/config.js");?>"></script>
 		<script src="<?php llr("aproject/filters.js");?>"></script>
+		<script src="<?php llr("aproject/directives.js");?>"></script>
 		<script src="<?php llr("aproject/route.js");?>"></script>
 		<script src="<?php llr("aproject/controllers/base.js");?>"></script>
 		<script src="<?php llr("aproject/controllers/article.js");?>"></script>
