@@ -10,3 +10,4 @@ var app = angular.module('deino', [
 ]);
 
 var controllers = angular.module('controllers', []);
+var filters = angular.module('filters', []);

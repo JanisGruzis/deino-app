@@ -80,6 +80,7 @@ function llr($file)
 		<!-- angular app -->
 		<script src="<?php llr("aproject/app.js");?>"></script>
 		<script src="<?php llr("aproject/config.js");?>"></script>
+		<script src="<?php llr("aproject/filters.js");?>"></script>
 		<script src="<?php llr("aproject/route.js");?>"></script>
 		<script src="<?php llr("aproject/controllers/base.js");?>"></script>
 		<script src="<?php llr("aproject/controllers/article.js");?>"></script>
