@@ -59,8 +59,8 @@
                                  class="article_img" alt=""/>
 
                             <h3 class="title">
-                                <a ng-href="{{ article.url }}" target="_blank">
-                                    {{article.title}}
+                                <a ng-href="{{ article.url }}" target="_blank"
+								   ng-bind-html="article.title | to_trusted">
                                 </a>
                             </h3>
 
@@ -69,9 +69,7 @@
                                 <span class="date" flex>{{ formatDate(article.date) }}</span>
                             </p>
 
-                            <p class="description">
-                                {{ article.description }}
-                            </p>
+                            <p class="description" ng-bind-html="article.description | to_trusted"></p>
                         </div>
                     </div>
                 </div>

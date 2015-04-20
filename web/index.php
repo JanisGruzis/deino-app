@@ -16,11 +16,9 @@ function llr($file)
 		<title>Deino</title>
 		<link rel="stylesheet" href="<?php llr("resources/angular-material/angular-material.css");?>"/>
 		<link href="<?php llr("resources/angular-carousel/dist/angular-carousel.css");?>" rel="stylesheet" type="text/css"/>
-		<!--  <link rel="stylesheet" href="<?php llr("resources/angular-material/theme/blue-theme.css");?>"/> -->
 		<link rel="stylesheet" href="<?php llr("resources/bootstrap/dist/css/bootstrap.min.css");?>"/>
 		<link rel="stylesheet" href="<?php llr("resources/bootstrap/dist/css/bootstrap-theme.min.css");?>"/>
 		<link rel="stylesheet" href="<?php llr("css/style.css");?>"/>
-		<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family-RobotoDraft:400,500,700,400italic"/> -->
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="<?php llr("resources/font-awesome/css/font-awesome.min.css");?>">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100italic,100,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic-ext,greek,greek-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
@@ -68,9 +66,6 @@ function llr($file)
 		<script src="<?php llr("resources/moment/locale/lv.js");?>"></script>
 		<script src="<?php llr("resources/underscore/underscore-min.js");?>"></script>
 		<script src="<?php llr("resources/angular-route/angular-route.min.js");?>"></script>
-		<!-- <script src="https://cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>  -->
-		<!-- <script src="<?php llr("resources/jquery.adaptive-backgrounds/src/jquery.adaptive-backgrounds.js");?>"></script> -->
-		<!-- <script src="<?php llr("resources/pleasejs/src/Please.js");?>"></script> -->
 		<script src="<?php llr("resources/tinycolor/tinycolor.js");?>"></script>
 		<script src="<?php llr("aproject/angular-adaptive-backgrounds.js");?>"></script>
 		<script src="<?php llr("resources/angular-touch/angular-touch.js");?>"></script>
@@ -80,6 +75,7 @@ function llr($file)
 		<!-- angular app -->
 		<script src="<?php llr("aproject/app.js");?>"></script>
 		<script src="<?php llr("aproject/config.js");?>"></script>
+		<script src="<?php llr("aproject/filters.js");?>"></script>
 		<script src="<?php llr("aproject/route.js");?>"></script>
 		<script src="<?php llr("aproject/controllers/base.js");?>"></script>
 		<script src="<?php llr("aproject/controllers/article.js");?>"></script>

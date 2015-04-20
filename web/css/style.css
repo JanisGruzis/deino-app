@@ -207,3 +207,8 @@ md-toolbar .header-search input.md-input {
 .article_img {
 	max-width: 100%;
 }
+
+.description b,
+.title b {
+	background-color: yellow;
+}
