@@ -1,3 +1,6 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
 .app-content {
     justify-content: center;
     padding-left: 15px;
@@ -130,7 +133,6 @@ ul[rn-carousel] > li:first-child {
     font-size: 0.8em;
     content: "\f138";
     background-color: #607D8B;
-    padding: 1px;
     border-radius: 100px;
     line-height: 0.6em;
 }
@@ -141,7 +143,6 @@ ul[rn-carousel] > li:first-child {
     font-size: 0.8em;
     content: "\f137";
     background-color: #607D8B;
-    padding: 1px;
     border-radius: 100px;
     line-height: 0.6em;
 }
