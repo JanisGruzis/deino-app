@@ -3,14 +3,17 @@ controllers.controller('BaseController', ['$rootScope', '$scope', '$http', '$loc
 
 		$rootScope.gotoSearch = function(){
 			$location.path('/query');
-			if ($rootScope.doSearch)
-			{
-				$rootScope.doSearch();
-			}
 		};
 
 		$rootScope.gotoStart = function(){
 			$location.path('/');
+		};
+
+		$rootScope.doSearch = function(){
+			if ($rootScope.search)
+			{
+				$rootScope.search();
+			}
 		};
 
 		moment.locale('lv');

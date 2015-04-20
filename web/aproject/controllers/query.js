@@ -5,6 +5,7 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 		var limit = 9;
 		articles = [];
 		var loading = false;
+		$rootScope.showSearch = true;
 
 		var loadArticles = function() {
 			var sourceIds = _.chain($scope.sources)
@@ -85,7 +86,7 @@ controllers.controller('QueryController', ['$rootScope', '$scope', '$http',
 			}
 		});
 
-		$rootScope.doSearch = function(){
+		$rootScope.search = function(){
 			if (!loading)
 			{
 				articles = [];

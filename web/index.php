@@ -31,8 +31,9 @@ function llr($file)
 			<div class="md-toolbar-tools">
 				<h2 ng-show="!showSearch" ng-click="gotoStart()">Deino</h2>
 				<span flex></span>
-				<md-button ng-click="gotoSearch()" ng-show="showSearch" class="md-icon-button">
-					<md-icon md-svg-icon="img/ic_keyboard_backspace_24px.svg"></md-icon>
+
+				<md-button ng-show="showSearch" ng-click="showSearch = !showSearch; gotoStart();" class="md-icon-button">
+					<md-icon md-svg-icon="img/ic_close_24px.svg"></md-icon>
 				</md-button>
 
 				<md-input-container ng-show="showSearch" class="header-search">
@@ -41,11 +42,11 @@ function llr($file)
 						/>
 				</md-input-container>
 
-				<md-button ng-show="showSearch" ng-click="showSearch = !showSearch" class="md-icon-button">
-					<md-icon md-svg-icon="img/ic_close_24px.svg"></md-icon>
+				<md-button ng-click="doSearch()" ng-show="showSearch" class="md-icon-button">
+					<md-icon md-svg-icon="img/ic_keyboard_backspace_24px.svg"></md-icon>
 				</md-button>
 
-				<md-button ng-show="!showSearch" ng-click="showSearch = !showSearch" class="md-icon-button">
+				<md-button ng-show="!showSearch" ng-click="showSearch = !showSearch; gotoSearch();" class="md-icon-button">
 					<md-icon md-svg-icon="img/ic_search_24px.svg"></md-icon>
 				</md-button>
 
