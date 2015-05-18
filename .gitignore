@@ -1,5 +1,5 @@
 /.idea
-/nbproject/private/
+/nbproject
 /bower_components
 /web/resources/*
 !.gitkeep
